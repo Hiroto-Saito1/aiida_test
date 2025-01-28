@@ -1,0 +1,1134 @@
+Job Id: 113319.toki
+    Job_Name = qsub.sh
+    Job_Owner = nshouta@localhost
+    resources_used.cpupercent = 3194
+    resources_used.cput = 5317:03:34
+    resources_used.mem = 14679632kb
+    resources_used.ncpus = 16
+    resources_used.vmem = 42944220kb
+    resources_used.walltime = 171:07:57
+    job_state = R
+    queue = GroupD
+    server = toki
+    Checkpoint = u
+    ctime = Wed Jan 22 02:34:51 2025
+    Error_Path = localhost:/home/nshouta/codes/wannier_utils/heavy_test/qsub.sh
+	.e113319
+    exec_host = sola11/1*16
+    exec_vnode = (sola11:ncpus=16)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:42:48 2025
+    Output_Path = localhost:/home/nshouta/codes/wannier_utils/heavy_test/qsub.s
+	h.o113319
+    Priority = 0
+    qtime = Wed Jan 22 02:34:51 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 16
+    Resource_List.ncpus = 16
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=16
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=16:mpiprocs=16
+    stime = Wed Jan 22 02:34:51 2025
+    session_id = 2795421
+    jobdir = /home/nshouta
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/nshouta,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=nshouta,
+	PBS_O_PATH=/home/nshouta/.vscode-server/cli/servers/Stable-fabdb6a30b4
+	9f79a7aba0f2ad9df9b399473380f/server/bin/remote-cli:/usr/opt/intel/vtun
+	e/2022.0.0/bin64:/usr/opt/intel/vpl/2022.0.0/bin:/usr/opt/intel/mpi/202
+	1.5.1/libfabric/bin:/usr/opt/intel/mpi/2021.5.1/bin:/usr/opt/intel/mkl/
+	2022.0.2/bin/intel64:/usr/opt/intel/itac/2021.5.0/bin:/home/nshouta/ana
+	conda3/bin:/usr/opt/intel/inspector/2022.0.0/bin64:/usr/opt/intel/dpcpp
+	-ct/2022.0.0/bin:/usr/opt/intel/dev-utilities/2021.5.2/bin:/usr/opt/int
+	el/debugger/2021.5.0/gdb/intel64/bin:/usr/opt/intel/compiler/2022.0.2/l
+	inux/lib/oclfpga/bin:/usr/opt/intel/compiler/2022.0.2/linux/bin/intel64
+	:/usr/opt/intel/compiler/2022.0.2/linux/bin:/usr/opt/intel/clck/2021.5.
+	0/bin/intel64:/usr/opt/intel/advisor/2022.0.0/bin64:/home/nshouta/anaco
+	nda3/condabin:/home/nshouta/.local/bin:/home/nshouta/bin:/usr/share/Mod
+	ules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin
+	:/home/nshouta/codes/w2dynamics:/opt/pbs/bin:/home/nshouta/codes/w2dyna
+	mics,PBS_O_MAIL=/var/spool/mail/nshouta,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/nshouta/codes/wannier_utils/heavy_test,
+	PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupD,PBS_O_HOST=localhost
+    comment = Job run at Wed Jan 22 at 02:34 on (sola11:ncpus=16)
+    etime = Wed Jan 22 02:34:51 2025
+    run_count = 1
+    Submit_arguments = qsub.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113478.toki
+    Job_Name = submit_toki.sh
+    Job_Owner = hirotosaito@localhost
+    resources_used.cpupercent = 1373
+    resources_used.cput = 145:22:13
+    resources_used.mem = 11155716kb
+    resources_used.ncpus = 14
+    resources_used.vmem = 170961300kb
+    resources_used.walltime = 100:49:57
+    job_state = R
+    queue = GroupC
+    server = toki
+    Checkpoint = u
+    ctime = Sat Jan 25 00:54:49 2025
+    Error_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test/
+	fleur_MaxR7.1/UUDD_110/w_soc/wannier_AFM_toki/submit_toki.sh.e113478
+    exec_host = sola1/1*14
+    exec_vnode = (sola1:ncpus=14)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:44:44 2025
+    Output_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test
+	/fleur_MaxR7.1/UUDD_110/w_soc/wannier_AFM_toki/submit_toki.sh.o113478
+    Priority = 0
+    qtime = Sat Jan 25 00:54:49 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 14
+    Resource_List.ncpus = 14
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=14
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=14:mpiprocs=14
+    stime = Sat Jan 25 00:54:49 2025
+    session_id = 2904201
+    jobdir = /home/hirotosaito
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/hirotosaito,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=hirotosaito,
+	PBS_O_PATH=/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito
+	/local/bin:/home/hirotosaito/intel/oneapi/vtune/2025.0/bin64:/home/hiro
+	tosaito/intel/oneapi/advisor/2025.0/bin64:/home/hirotosaito/intel/oneap
+	i/2025.0/bin:/home/hirotosaito/.vscode-server/cli/servers/Stable-91fbdd
+	dc47bc9c09064bf7acf133d22631cbf083/server/bin/remote-cli:/home/hirotosa
+	ito/libxml2-2.9.12/build/bin:/home/hirotosaito/codes/fleur_MaxR7.1/buil
+	d:/home/hirotosaito/local/bin:/home/opt/intel_2022/vtune/2022.2.0/bin64
+	:/home/opt/intel_2022/vpl/2022.1.0/bin:/home/opt/intel_2022/mpi/2021.6.
+	0/libfabric/bin:/home/opt/intel_2022/mpi/2021.6.0/bin:/home/opt/intel_2
+	022/mkl/2022.1.0/bin/intel64:/home/opt/intel_2022/itac/2021.6.0/bin:/ho
+	me/hirotosaito/miniconda3/envs/mae/bin:/opt/intel_2022/intelpython/late
+	st/condabin:/home/opt/intel_2022/inspector/2022.1.0/bin64:/home/opt/int
+	el_2022/dpcpp-ct/2022.1.0/bin:/home/opt/intel_2022/dev-utilities/2021.6
+	.0/bin:/home/opt/intel_2022/debugger/2021.6.0/gdb/intel64/bin:/home/opt
+	/intel_2022/compiler/2022.1.0/linux/lib/oclfpga/bin:/home/opt/intel_202
+	2/compiler/2022.1.0/linux/bin/intel64:/home/opt/intel_2022/compiler/202
+	2.1.0/linux/bin:/home/opt/intel_2022/clck/2021.6.0/bin/intel64:/home/op
+	t/intel_2022/advisor/2022.1.0/bin64:/home/hirotosaito/.local/bin:/home/
+	hirotosaito/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/loc
+	al/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bin,
+	PBS_O_MAIL=/var/spool/mail/hirotosaito,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/hirotosaito/github_projects/ishiwata_lab/test/fleu
+	r_MaxR7.1/UUDD_110/w_soc/wannier_AFM_toki,PBS_O_SYSTEM=Linux,
+	PBS_O_QUEUE=GroupC,PBS_O_HOST=localhost
+    comment = Job run at Sat Jan 25 at 00:54 on (sola1:ncpus=14)
+    etime = Sat Jan 25 00:54:49 2025
+    run_count = 1
+    Submit_arguments = submit_toki.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113727.toki
+    Job_Name = scf.sh
+    Job_Owner = terao@localhost
+    resources_used.cpupercent = 3200
+    resources_used.cput = 1130:47:21
+    resources_used.mem = 34845508kb
+    resources_used.ncpus = 32
+    resources_used.vmem = 316827796kb
+    resources_used.walltime = 36:10:41
+    job_state = R
+    queue = GroupC
+    server = toki
+    Checkpoint = u
+    ctime = Mon Jan 27 17:34:05 2025
+    Error_Path = localhost:/home/terao/calc/EuCuSb/rrkjus/tmp/open_nonmag/vasp/
+	scf.sh.e113727
+    exec_host = sola1/0*32
+    exec_vnode = (sola1:ncpus=32)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:44:44 2025
+    Output_Path = localhost:/home/terao/calc/EuCuSb/rrkjus/tmp/open_nonmag/vasp
+	/scf.sh.o113727
+    Priority = 0
+    qtime = Mon Jan 27 17:34:05 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 32
+    Resource_List.ncpus = 32
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=32
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=32:mpiprocs=32
+    stime = Mon Jan 27 17:34:05 2025
+    session_id = 2934561
+    jobdir = /home/terao
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/terao,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=terao,
+	PBS_O_PATH=/home/terao/package/miniconda3/bin:/home/terao/package/mini
+	conda3/condabin:/home/terao/package/wannier_tools/bin:/home/terao/packa
+	ge/arpack-ng/lib:/home/terao/package/OpenBLAS/lib:/home/terao/package/q
+	e-7.2/wannier90-3.1.0/utility:/home/terao/package/qe-7.2/bin:/home/tera
+	o/.local/bin:/home/terao/bin:/usr/share/Modules/bin:/usr/local/bin:/usr
+	/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin,
+	PBS_O_MAIL=/var/spool/mail/terao,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/terao/calc/EuCuSb/rrkjus/tmp/open_nonmag/vasp,
+	PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupC,PBS_O_HOST=localhost
+    comment = Job run at Mon Jan 27 at 17:34 on (sola1:ncpus=32)
+    etime = Mon Jan 27 17:34:05 2025
+    run_count = 1
+    Submit_arguments = scf.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113731.toki
+    Job_Name = submit_toki.sh
+    Job_Owner = hirotosaito@localhost
+    resources_used.cpupercent = 2278
+    resources_used.cput = 789:31:48
+    resources_used.mem = 11803424kb
+    resources_used.ncpus = 12
+    resources_used.vmem = 69889676kb
+    resources_used.walltime = 34:45:35
+    job_state = R
+    queue = GroupA
+    server = toki
+    Checkpoint = u
+    ctime = Mon Jan 27 18:58:11 2025
+    Error_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test/
+	fleur_MaxR7.1/FM_a/w_soc/scf_FM_U1/submit_toki.sh.e113731
+    exec_host = sola53/0*12
+    exec_vnode = (sola53:ncpus=12)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:43:45 2025
+    Output_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test
+	/fleur_MaxR7.1/FM_a/w_soc/scf_FM_U1/submit_toki.sh.o113731
+    Priority = 0
+    qtime = Mon Jan 27 18:58:11 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 12
+    Resource_List.ncpus = 12
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=12
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=12:mpiprocs=12
+    stime = Mon Jan 27 18:58:11 2025
+    session_id = 782768
+    jobdir = /home/hirotosaito
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/hirotosaito,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=hirotosaito,
+	PBS_O_PATH=/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito
+	/local/bin:/home/hirotosaito/intel/oneapi/vtune/2025.0/bin64:/home/hiro
+	tosaito/intel/oneapi/advisor/2025.0/bin64:/home/hirotosaito/intel/oneap
+	i/2025.0/bin:/home/hirotosaito/.vscode-server/cli/servers/Stable-91fbdd
+	dc47bc9c09064bf7acf133d22631cbf083/server/bin/remote-cli:/home/hirotosa
+	ito/miniconda3/envs/mae/bin:/home/hirotosaito/miniconda3/condabin:/home
+	/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/local/bin:/home/
+	hirotosaito/intel/oneapi/vtune/2025.0/bin64:/home/hirotosaito/intel/one
+	api/advisor/2025.0/bin64:/home/hirotosaito/intel/oneapi/2025.0/bin:/hom
+	e/hirotosaito/.local/bin:/home/hirotosaito/bin:/usr/share/Modules/bin:/
+	usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/
+	bin,PBS_O_MAIL=/var/spool/mail/hirotosaito,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/hirotosaito/github_projects/ishiwata_lab/test/fleu
+	r_MaxR7.1/FM_a/w_soc/scf_FM_U1,PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupA,
+	PBS_O_HOST=localhost
+    comment = Job run at Mon Jan 27 at 18:58 on (sola53:ncpus=12)
+    etime = Mon Jan 27 18:58:11 2025
+    run_count = 1
+    Submit_arguments = submit_toki.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113759.toki
+    Job_Name = sub_toki.sh
+    Job_Owner = ginta@localhost
+    resources_used.cpupercent = 3170
+    resources_used.cput = 351:20:47
+    resources_used.mem = 183315540kb
+    resources_used.ncpus = 32
+    resources_used.vmem = 461877120kb
+    resources_used.walltime = 11:10:58
+    job_state = R
+    queue = GroupE
+    server = toki
+    Checkpoint = u
+    ctime = Tue Jan 28 15:02:16 2025
+    Error_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/QE-slab/su
+	b_toki.sh.e113759
+    exec_host = sola32/0*32
+    exec_vnode = (sola32:ncpus=32)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:44:14 2025
+    Output_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/QE-slab/s
+	ub_toki.sh.o113759
+    Priority = 0
+    qtime = Tue Jan 28 15:02:16 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 32
+    Resource_List.ncpus = 32
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=32
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=32:mpiprocs=32
+    stime = Tue Jan 28 18:33:17 2025
+    session_id = 477836
+    jobdir = /home/ginta
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/ginta,PBS_O_LANG=ja_JP.UTF-8,
+	PBS_O_LOGNAME=ginta,
+	PBS_O_PATH=/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta/pac
+	kage/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/ginta/.vscode-se
+	rver/cli/servers/Stable-cd4ee3b1c348a13bafd8f9ad8060705f6d4b9cba/server
+	/bin/remote-cli:/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta
+	/package/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/opt/intel_20
+	22/vtune/2022.2.0/bin64:/home/opt/intel_2022/vpl/2022.1.0/bin:/home/opt
+	/intel_2022/mpi/2021.6.0/libfabric/bin:/home/opt/intel_2022/mpi/2021.6.
+	0/bin:/home/opt/intel_2022/mkl/2022.1.0/bin/intel64:/home/opt/intel_202
+	2/itac/2021.6.0/bin:/home/ginta/package/anaconda3/bin:/opt/intel_2022/i
+	ntelpython/latest/condabin:/home/opt/intel_2022/inspector/2022.1.0/bin6
+	4:/home/opt/intel_2022/dpcpp-ct/2022.1.0/bin:/home/opt/intel_2022/dev-u
+	tilities/2021.6.0/bin:/home/opt/intel_2022/debugger/2021.6.0/gdb/intel6
+	4/bin:/home/opt/intel_2022/compiler/2022.1.0/linux/lib/oclfpga/bin:/hom
+	e/opt/intel_2022/compiler/2022.1.0/linux/bin/intel64:/home/opt/intel_20
+	22/compiler/2022.1.0/linux/bin:/home/opt/intel_2022/clck/2021.6.0/bin/i
+	ntel64:/home/opt/intel_2022/advisor/2022.1.0/bin64:/home/ginta/.local/b
+	in:/home/ginta/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/
+	local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bin,
+	PBS_O_MAIL=/var/spool/mail/ginta,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/QE-slab,
+	PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupE,PBS_O_HOST=localhost
+    comment = Job run at Tue Jan 28 at 18:33 on (sola32:ncpus=32)
+    etime = Tue Jan 28 15:02:16 2025
+    run_count = 1
+    Submit_arguments = sub_toki.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113801.toki
+    Job_Name = sub_toki.sh
+    Job_Owner = ginta@localhost
+    resources_used.cpupercent = 4646
+    resources_used.cput = 393:14:22
+    resources_used.mem = 118443984kb
+    resources_used.ncpus = 48
+    resources_used.vmem = 535367536kb
+    resources_used.walltime = 08:33:52
+    job_state = R
+    queue = GroupC
+    server = toki
+    Checkpoint = u
+    ctime = Tue Jan 28 21:10:44 2025
+    Error_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/Antiferro/
+	sub_toki.sh.e113801
+    exec_host = sola2/0*48
+    exec_vnode = (sola2:ncpus=48)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:44:34 2025
+    Output_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/Antiferro
+	/sub_toki.sh.o113801
+    Priority = 0
+    qtime = Tue Jan 28 21:10:44 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 48
+    Resource_List.ncpus = 48
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=48
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=48:mpiprocs=48
+    stime = Tue Jan 28 21:10:44 2025
+    session_id = 2236114
+    jobdir = /home/ginta
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/ginta,PBS_O_LANG=ja_JP.UTF-8,
+	PBS_O_LOGNAME=ginta,
+	PBS_O_PATH=/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta/pac
+	kage/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/ginta/.vscode-se
+	rver/cli/servers/Stable-cd4ee3b1c348a13bafd8f9ad8060705f6d4b9cba/server
+	/bin/remote-cli:/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta
+	/package/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/opt/intel_20
+	22/vtune/2022.2.0/bin64:/home/opt/intel_2022/vpl/2022.1.0/bin:/home/opt
+	/intel_2022/mpi/2021.6.0/libfabric/bin:/home/opt/intel_2022/mpi/2021.6.
+	0/bin:/home/opt/intel_2022/mkl/2022.1.0/bin/intel64:/home/opt/intel_202
+	2/itac/2021.6.0/bin:/home/ginta/package/anaconda3/bin:/opt/intel_2022/i
+	ntelpython/latest/condabin:/home/opt/intel_2022/inspector/2022.1.0/bin6
+	4:/home/opt/intel_2022/dpcpp-ct/2022.1.0/bin:/home/opt/intel_2022/dev-u
+	tilities/2021.6.0/bin:/home/opt/intel_2022/debugger/2021.6.0/gdb/intel6
+	4/bin:/home/opt/intel_2022/compiler/2022.1.0/linux/lib/oclfpga/bin:/hom
+	e/opt/intel_2022/compiler/2022.1.0/linux/bin/intel64:/home/opt/intel_20
+	22/compiler/2022.1.0/linux/bin:/home/opt/intel_2022/clck/2021.6.0/bin/i
+	ntel64:/home/opt/intel_2022/advisor/2022.1.0/bin64:/home/ginta/.local/b
+	in:/home/ginta/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/
+	local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bin,
+	PBS_O_MAIL=/var/spool/mail/ginta,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/Antiferro,
+	PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupC,PBS_O_HOST=localhost
+    comment = Job run at Tue Jan 28 at 21:10 on (sola2:ncpus=48)
+    etime = Tue Jan 28 21:10:44 2025
+    run_count = 1
+    Submit_arguments = sub_toki.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113803.toki
+    Job_Name = sub_tools.sh
+    Job_Owner = ginta@localhost
+    resources_used.cpupercent = 3198
+    resources_used.cput = 260:26:39
+    resources_used.mem = 17832304kb
+    resources_used.ncpus = 32
+    resources_used.vmem = 296761536kb
+    resources_used.walltime = 08:10:06
+    job_state = R
+    queue = GroupD
+    server = toki
+    Checkpoint = u
+    ctime = Tue Jan 28 21:32:52 2025
+    Error_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/WannierToo
+	ls/sub_tools.sh.e113803
+    exec_host = sola12/0*32
+    exec_vnode = (sola12:ncpus=32)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:42:56 2025
+    Output_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/WannierTo
+	ols/sub_tools.sh.o113803
+    Priority = 0
+    qtime = Tue Jan 28 21:32:52 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 32
+    Resource_List.ncpus = 32
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=32
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=32:mpiprocs=32
+    stime = Tue Jan 28 21:32:52 2025
+    session_id = 1323605
+    jobdir = /home/ginta
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/ginta,PBS_O_LANG=ja_JP.UTF-8,
+	PBS_O_LOGNAME=ginta,
+	PBS_O_PATH=/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta/pac
+	kage/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/ginta/.vscode-se
+	rver/cli/servers/Stable-cd4ee3b1c348a13bafd8f9ad8060705f6d4b9cba/server
+	/bin/remote-cli:/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta
+	/package/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/opt/intel_20
+	22/vtune/2022.2.0/bin64:/home/opt/intel_2022/vpl/2022.1.0/bin:/home/opt
+	/intel_2022/mpi/2021.6.0/libfabric/bin:/home/opt/intel_2022/mpi/2021.6.
+	0/bin:/home/opt/intel_2022/mkl/2022.1.0/bin/intel64:/home/opt/intel_202
+	2/itac/2021.6.0/bin:/home/ginta/package/anaconda3/bin:/opt/intel_2022/i
+	ntelpython/latest/condabin:/home/opt/intel_2022/inspector/2022.1.0/bin6
+	4:/home/opt/intel_2022/dpcpp-ct/2022.1.0/bin:/home/opt/intel_2022/dev-u
+	tilities/2021.6.0/bin:/home/opt/intel_2022/debugger/2021.6.0/gdb/intel6
+	4/bin:/home/opt/intel_2022/compiler/2022.1.0/linux/lib/oclfpga/bin:/hom
+	e/opt/intel_2022/compiler/2022.1.0/linux/bin/intel64:/home/opt/intel_20
+	22/compiler/2022.1.0/linux/bin:/home/opt/intel_2022/clck/2021.6.0/bin/i
+	ntel64:/home/opt/intel_2022/advisor/2022.1.0/bin64:/home/ginta/.local/b
+	in:/home/ginta/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/
+	local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bin,
+	PBS_O_MAIL=/var/spool/mail/ginta,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/WannierTools,
+	PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupD,PBS_O_HOST=localhost
+    comment = Job run at Tue Jan 28 at 21:32 on (sola12:ncpus=32)
+    etime = Tue Jan 28 21:32:52 2025
+    run_count = 1
+    Submit_arguments = sub_tools.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113805.toki
+    Job_Name = sub_symwan.sh
+    Job_Owner = ginta@localhost
+    resources_used.cpupercent = 4718
+    resources_used.cput = 210:37:45
+    resources_used.mem = 71672588kb
+    resources_used.ncpus = 48
+    resources_used.vmem = 489012888kb
+    resources_used.walltime = 07:53:03
+    job_state = R
+    queue = GroupC
+    server = toki
+    Checkpoint = u
+    ctime = Tue Jan 28 21:51:29 2025
+    Error_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/sub_symwan
+	.sh.e113805
+    exec_host = sola3/0*48
+    exec_vnode = (sola3:ncpus=48)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:44:30 2025
+    Output_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/sub_symwa
+	n.sh.o113805
+    Priority = 0
+    qtime = Tue Jan 28 21:51:29 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 48
+    Resource_List.ncpus = 48
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=48
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=48:mpiprocs=48
+    stime = Tue Jan 28 21:51:29 2025
+    session_id = 2280005
+    jobdir = /home/ginta
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/ginta,PBS_O_LANG=ja_JP.UTF-8,
+	PBS_O_LOGNAME=ginta,
+	PBS_O_PATH=/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta/pac
+	kage/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/ginta/.vscode-se
+	rver/cli/servers/Stable-cd4ee3b1c348a13bafd8f9ad8060705f6d4b9cba/server
+	/bin/remote-cli:/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta
+	/package/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/opt/intel_20
+	22/vtune/2022.2.0/bin64:/home/opt/intel_2022/vpl/2022.1.0/bin:/home/opt
+	/intel_2022/mpi/2021.6.0/libfabric/bin:/home/opt/intel_2022/mpi/2021.6.
+	0/bin:/home/opt/intel_2022/mkl/2022.1.0/bin/intel64:/home/opt/intel_202
+	2/itac/2021.6.0/bin:/home/ginta/package/anaconda3/bin:/opt/intel_2022/i
+	ntelpython/latest/condabin:/home/opt/intel_2022/inspector/2022.1.0/bin6
+	4:/home/opt/intel_2022/dpcpp-ct/2022.1.0/bin:/home/opt/intel_2022/dev-u
+	tilities/2021.6.0/bin:/home/opt/intel_2022/debugger/2021.6.0/gdb/intel6
+	4/bin:/home/opt/intel_2022/compiler/2022.1.0/linux/lib/oclfpga/bin:/hom
+	e/opt/intel_2022/compiler/2022.1.0/linux/bin/intel64:/home/opt/intel_20
+	22/compiler/2022.1.0/linux/bin:/home/opt/intel_2022/clck/2021.6.0/bin/i
+	ntel64:/home/opt/intel_2022/advisor/2022.1.0/bin64:/home/ginta/.local/b
+	in:/home/ginta/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/
+	local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bin,
+	PBS_O_MAIL=/var/spool/mail/ginta,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/ginta/INVERSION/ns7/mp-1078002/Wsoc,
+	PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupC,PBS_O_HOST=localhost
+    comment = Job run at Tue Jan 28 at 21:51 on (sola3:ncpus=48)
+    etime = Tue Jan 28 21:51:29 2025
+    run_count = 1
+    Submit_arguments = sub_symwan.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113806.toki
+    Job_Name = sub_toki.sh
+    Job_Owner = ginta@localhost
+    job_state = Q
+    queue = GroupD
+    server = toki
+    Checkpoint = u
+    ctime = Tue Jan 28 22:32:36 2025
+    Error_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/QE-bands/s
+	ub_toki.sh.e113806
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Tue Jan 28 22:32:36 2025
+    Output_Path = localhost:/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/QE-bands/
+	sub_toki.sh.o113806
+    Priority = 0
+    qtime = Tue Jan 28 22:32:36 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 32
+    Resource_List.ncpus = 32
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=32
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=32:mpiprocs=32
+    substate = 10
+    Variable_List = PBS_O_HOME=/home/ginta,PBS_O_LANG=ja_JP.UTF-8,
+	PBS_O_LOGNAME=ginta,
+	PBS_O_PATH=/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta/pac
+	kage/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/ginta/.vscode-se
+	rver/cli/servers/Stable-cd4ee3b1c348a13bafd8f9ad8060705f6d4b9cba/server
+	/bin/remote-cli:/home/ginta/package/wannier_tools-2.7.0/bin:/home/ginta
+	/package/qe-7.3.1/bin:/home/ginta/package/qe-7.2/bin:/home/opt/intel_20
+	22/vtune/2022.2.0/bin64:/home/opt/intel_2022/vpl/2022.1.0/bin:/home/opt
+	/intel_2022/mpi/2021.6.0/libfabric/bin:/home/opt/intel_2022/mpi/2021.6.
+	0/bin:/home/opt/intel_2022/mkl/2022.1.0/bin/intel64:/home/opt/intel_202
+	2/itac/2021.6.0/bin:/home/ginta/package/anaconda3/bin:/opt/intel_2022/i
+	ntelpython/latest/condabin:/home/opt/intel_2022/inspector/2022.1.0/bin6
+	4:/home/opt/intel_2022/dpcpp-ct/2022.1.0/bin:/home/opt/intel_2022/dev-u
+	tilities/2021.6.0/bin:/home/opt/intel_2022/debugger/2021.6.0/gdb/intel6
+	4/bin:/home/opt/intel_2022/compiler/2022.1.0/linux/lib/oclfpga/bin:/hom
+	e/opt/intel_2022/compiler/2022.1.0/linux/bin/intel64:/home/opt/intel_20
+	22/compiler/2022.1.0/linux/bin:/home/opt/intel_2022/clck/2021.6.0/bin/i
+	ntel64:/home/opt/intel_2022/advisor/2022.1.0/bin64:/home/ginta/.local/b
+	in:/home/ginta/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/
+	local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bin,
+	PBS_O_MAIL=/var/spool/mail/ginta,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/ginta/INVERSION/ns7/mp-1078002/Wsoc/QE-bands,
+	PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupD,PBS_O_HOST=localhost
+    comment = Not Running: Insufficient amount of resource: ncpus (R: 32 A: 16 
+	T: 64)
+    etime = Tue Jan 28 22:32:36 2025
+    Submit_arguments = sub_toki.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113814.toki
+    Job_Name = submit_toki.sh
+    Job_Owner = hirotosaito@localhost
+    resources_used.cpupercent = 2266
+    resources_used.cput = 15:12:20
+    resources_used.mem = 9503120kb
+    resources_used.ncpus = 12
+    resources_used.vmem = 48889304kb
+    resources_used.walltime = 00:40:19
+    job_state = R
+    queue = GroupA
+    server = toki
+    Checkpoint = u
+    ctime = Wed Jan 29 05:04:03 2025
+    Error_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test/
+	fleur_MaxR7.1/FM_110/w_soc/scf_FM_U1/submit_toki.sh.e113814
+    exec_host = sola51/0*12
+    exec_vnode = (sola51:ncpus=12)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:44:21 2025
+    Output_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test
+	/fleur_MaxR7.1/FM_110/w_soc/scf_FM_U1/submit_toki.sh.o113814
+    Priority = 0
+    qtime = Wed Jan 29 05:04:03 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 12
+    Resource_List.ncpus = 12
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=12
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=12:mpiprocs=12
+    stime = Wed Jan 29 05:04:03 2025
+    session_id = 2122255
+    jobdir = /home/hirotosaito
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/hirotosaito,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=hirotosaito,
+	PBS_O_PATH=/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito
+	/local/bin:/home/hirotosaito/intel/oneapi/vtune/2025.0/bin64:/home/hiro
+	tosaito/intel/oneapi/advisor/2025.0/bin64:/home/hirotosaito/intel/oneap
+	i/2025.0/bin:/home/hirotosaito/.vscode-server/cli/servers/Stable-91fbdd
+	dc47bc9c09064bf7acf133d22631cbf083/server/bin/remote-cli:/home/hirotosa
+	ito/miniconda3/envs/mae/bin:/home/hirotosaito/miniconda3/condabin:/home
+	/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/local/bin:/home/
+	hirotosaito/.local/bin:/home/hirotosaito/bin:/usr/share/Modules/bin:/us
+	r/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bi
+	n,PBS_O_MAIL=/var/spool/mail/hirotosaito,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/hirotosaito/github_projects/ishiwata_lab/test/fleu
+	r_MaxR7.1/FM_110/w_soc/scf_FM_U1,PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupA,
+	PBS_O_HOST=localhost
+    comment = Job run at Wed Jan 29 at 05:04 on (sola51:ncpus=12)
+    etime = Wed Jan 29 05:04:03 2025
+    run_count = 1
+    Submit_arguments = submit_toki.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113815.toki
+    Job_Name = submit_toki.sh
+    Job_Owner = hirotosaito@localhost
+    resources_used.cpupercent = 2257
+    resources_used.cput = 14:24:59
+    resources_used.mem = 13701460kb
+    resources_used.ncpus = 12
+    resources_used.vmem = 54667916kb
+    resources_used.walltime = 00:38:26
+    job_state = R
+    queue = GroupA
+    server = toki
+    Checkpoint = u
+    ctime = Wed Jan 29 05:05:08 2025
+    Error_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test/
+	fleur_MaxR7.1/UUDD_c/w_soc/scf_AFM_U1/submit_toki.sh.e113815
+    exec_host = sola52/0*12
+    exec_vnode = (sola52:ncpus=12)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:43:32 2025
+    Output_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test
+	/fleur_MaxR7.1/UUDD_c/w_soc/scf_AFM_U1/submit_toki.sh.o113815
+    Priority = 0
+    qtime = Wed Jan 29 05:05:08 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 12
+    Resource_List.ncpus = 12
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=12
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=12:mpiprocs=12
+    stime = Wed Jan 29 05:05:08 2025
+    session_id = 816478
+    jobdir = /home/hirotosaito
+    substate = 42
+    Variable_List = PBS_O_HOME=/home/hirotosaito,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=hirotosaito,
+	PBS_O_PATH=/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito
+	/local/bin:/home/hirotosaito/intel/oneapi/vtune/2025.0/bin64:/home/hiro
+	tosaito/intel/oneapi/advisor/2025.0/bin64:/home/hirotosaito/intel/oneap
+	i/2025.0/bin:/home/hirotosaito/.vscode-server/cli/servers/Stable-91fbdd
+	dc47bc9c09064bf7acf133d22631cbf083/server/bin/remote-cli:/home/hirotosa
+	ito/miniconda3/envs/mae/bin:/home/hirotosaito/miniconda3/condabin:/home
+	/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/local/bin:/home/
+	hirotosaito/.local/bin:/home/hirotosaito/bin:/usr/share/Modules/bin:/us
+	r/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bi
+	n,PBS_O_MAIL=/var/spool/mail/hirotosaito,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/hirotosaito/github_projects/ishiwata_lab/test/fleu
+	r_MaxR7.1/UUDD_c/w_soc/scf_AFM_U1,PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupA,
+	PBS_O_HOST=localhost
+    comment = Job run at Wed Jan 29 at 05:05 on (sola52:ncpus=12)
+    etime = Wed Jan 29 05:05:08 2025
+    run_count = 1
+    Submit_arguments = submit_toki.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113816.toki
+    Job_Name = submit_toki.sh
+    Job_Owner = hirotosaito@localhost
+    job_state = Q
+    queue = GroupA
+    server = toki
+    Checkpoint = u
+    ctime = Wed Jan 29 05:05:58 2025
+    Error_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test/
+	fleur_MaxR7.1/UUDD_a/w_soc/scf_AFM_U1/submit_toki.sh.e113816
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:05:58 2025
+    Output_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test
+	/fleur_MaxR7.1/UUDD_a/w_soc/scf_AFM_U1/submit_toki.sh.o113816
+    Priority = 0
+    qtime = Wed Jan 29 05:05:58 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 12
+    Resource_List.ncpus = 12
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=12
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=12:mpiprocs=12
+    substate = 10
+    Variable_List = PBS_O_HOME=/home/hirotosaito,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=hirotosaito,
+	PBS_O_PATH=/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito
+	/local/bin:/home/hirotosaito/intel/oneapi/vtune/2025.0/bin64:/home/hiro
+	tosaito/intel/oneapi/advisor/2025.0/bin64:/home/hirotosaito/intel/oneap
+	i/2025.0/bin:/home/hirotosaito/.vscode-server/cli/servers/Stable-91fbdd
+	dc47bc9c09064bf7acf133d22631cbf083/server/bin/remote-cli:/home/hirotosa
+	ito/miniconda3/envs/mae/bin:/home/hirotosaito/miniconda3/condabin:/home
+	/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/local/bin:/home/
+	hirotosaito/.local/bin:/home/hirotosaito/bin:/usr/share/Modules/bin:/us
+	r/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bi
+	n,PBS_O_MAIL=/var/spool/mail/hirotosaito,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/hirotosaito/github_projects/ishiwata_lab/test/fleu
+	r_MaxR7.1/UUDD_a/w_soc/scf_AFM_U1,PBS_O_SYSTEM=Linux,PBS_O_QUEUE=GroupA,
+	PBS_O_HOST=localhost
+    comment = Not Running: Not enough free nodes available
+    etime = Wed Jan 29 05:05:58 2025
+    Submit_arguments = submit_toki.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113817.toki
+    Job_Name = submit_toki.sh
+    Job_Owner = hirotosaito@localhost
+    job_state = Q
+    queue = GroupA
+    server = toki
+    Checkpoint = u
+    ctime = Wed Jan 29 05:06:36 2025
+    Error_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test/
+	fleur_MaxR7.1/UUDD_110/w_soc/scf_AFM_U1/submit_toki.sh.e113817
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = a
+    mtime = Wed Jan 29 05:06:36 2025
+    Output_Path = localhost:/home/hirotosaito/github_projects/ishiwata_lab/test
+	/fleur_MaxR7.1/UUDD_110/w_soc/scf_AFM_U1/submit_toki.sh.o113817
+    Priority = 0
+    qtime = Wed Jan 29 05:06:36 2025
+    Rerunable = True
+    Resource_List.mpiprocs = 12
+    Resource_List.ncpus = 12
+    Resource_List.nodect = 1
+    Resource_List.nodes = 1:ppn=12
+    Resource_List.place = scatter
+    Resource_List.select = 1:ncpus=12:mpiprocs=12
+    substate = 10
+    Variable_List = PBS_O_HOME=/home/hirotosaito,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=hirotosaito,
+	PBS_O_PATH=/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito
+	/local/bin:/home/hirotosaito/intel/oneapi/vtune/2025.0/bin64:/home/hiro
+	tosaito/intel/oneapi/advisor/2025.0/bin64:/home/hirotosaito/intel/oneap
+	i/2025.0/bin:/home/hirotosaito/.vscode-server/cli/servers/Stable-91fbdd
+	dc47bc9c09064bf7acf133d22631cbf083/server/bin/remote-cli:/home/hirotosa
+	ito/miniconda3/envs/mae/bin:/home/hirotosaito/miniconda3/condabin:/home
+	/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/local/bin:/home/
+	hirotosaito/.local/bin:/home/hirotosaito/bin:/usr/share/Modules/bin:/us
+	r/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bi
+	n,PBS_O_MAIL=/var/spool/mail/hirotosaito,PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/hirotosaito/github_projects/ishiwata_lab/test/fleu
+	r_MaxR7.1/UUDD_110/w_soc/scf_AFM_U1,PBS_O_SYSTEM=Linux,
+	PBS_O_QUEUE=GroupA,PBS_O_HOST=localhost
+    comment = Not Running: Not enough free nodes available
+    etime = Wed Jan 29 05:06:36 2025
+    Submit_arguments = submit_toki.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+
+Job Id: 113819.toki
+    Job_Name = aiida-154
+    Job_Owner = hirotosaito@localhost
+    resources_used.cpupercent = 50
+    resources_used.cput = 00:00:02
+    resources_used.mem = 0kb
+    resources_used.ncpus = 1
+    resources_used.vmem = 0kb
+    resources_used.walltime = 00:00:04
+    job_state = E
+    queue = GroupC
+    server = toki
+    Checkpoint = u
+    ctime = Wed Jan 29 05:42:54 2025
+    Error_Path = toki:/home/hirotosaito/github_projects/aiida_test/aiida_run/c7
+	/65/9fc7-dd8a-444c-986b-9011d8b8ae45/_scheduler-stderr.txt
+    exec_host = sola1/2
+    exec_vnode = (sola1:ncpus=1)
+    Hold_Types = n
+    Join_Path = n
+    Keep_Files = n
+    Mail_Points = n
+    mtime = Wed Jan 29 05:42:58 2025
+    Output_Path = toki:/home/hirotosaito/github_projects/aiida_test/aiida_run/c
+	7/65/9fc7-dd8a-444c-986b-9011d8b8ae45/_scheduler-stdout.txt
+    Priority = 0
+    qtime = Wed Jan 29 05:42:54 2025
+    Rerunable = False
+    Resource_List.mpiprocs = 1
+    Resource_List.ncpus = 1
+    Resource_List.nodect = 1
+    Resource_List.place = free
+    Resource_List.select = 1:mpiprocs=1
+    stime = Wed Jan 29 05:42:54 2025
+    session_id = 2942872
+    jobdir = /home/hirotosaito
+    substate = 51
+    Variable_List = PBS_O_HOME=/home/hirotosaito,PBS_O_LANG=en_US.UTF-8,
+	PBS_O_LOGNAME=hirotosaito,
+	PBS_O_PATH=/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito
+	/local/bin:/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/
+	miniconda3/envs/mae/bin:/home/hirotosaito/miniconda3/envs/mae/bin:/home
+	/hirotosaito/local/bin:/home/hirotosaito/intel/oneapi/vtune/2025.0/bin6
+	4:/home/hirotosaito/intel/oneapi/advisor/2025.0/bin64:/home/hirotosaito
+	/intel/oneapi/2025.0/bin:/home/hirotosaito/.vscode-server/cli/servers/S
+	table-91fbdddc47bc9c09064bf7acf133d22631cbf083/server/bin/remote-cli:/h
+	ome/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/miniconda3/co
+	ndabin:/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/loca
+	l/bin:/home/hirotosaito/intel/oneapi/vtune/2025.0/bin64:/home/hirotosai
+	to/intel/oneapi/advisor/2025.0/bin64:/home/hirotosaito/intel/oneapi/202
+	5.0/bin:/home/hirotosaito/.local/bin:/home/hirotosaito/bin:/usr/share/M
+	odules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/b
+	in:/opt/pbs/bin:/opt/pbs/bin,PBS_O_MAIL=/var/spool/mail/hirotosaito,
+	PBS_O_SHELL=/bin/bash,
+	PBS_O_WORKDIR=/home/hirotosaito/github_projects/aiida_test/aiida_run/c
+	7/65/9fc7-dd8a-444c-986b-9011d8b8ae45,PBS_O_SYSTEM=Linux,CONDA_SHLVL=6,
+	PYTHONUNBUFFERED=True,
+	LS_COLORS=rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do
+	=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01
+	;05;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:t
+	w=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.ta
+	r=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5
+	;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.
+	tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9
+	:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=
+	38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:
+	*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=
+	38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;
+	9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=
+	38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg
+	=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=
+	38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=
+	38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=
+	38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=
+	38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v
+	=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=3
+	8;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38
+	;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;
+	13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;1
+	3:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.m4a=38;5;45:*.mid=38;5;45
+	:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45
+	:*.ra=38;5;45:*.wav=38;5;45:*.oga=38;5;45:*.opus=38;5;45:*.spx=38;5;45:
+	*.xspf=38;5;45:,
+	LD_LIBRARY_PATH=/home/hirotosaito/hdf5/hdf5-1.12.3/hdf5/lib:/home/hiro
+	tosaito/miniconda3/envs/mae/lib:/home/hirotosaito/arpack-ng-3.9.1/build
+	/lib:/home/hirotosaito/local/lib:/home/hirotosaito/hdf5/hdf5-1.12.3/hdf
+	5/lib:/home/hirotosaito/miniconda3/envs/mae/lib:/home/hirotosaito/arpac
+	k-ng-3.9.1/build/lib:/home/hirotosaito/local/lib:/home/hirotosaito/inte
+	l/oneapi/2025.0/opt/mpi/libfabric/lib:/home/hirotosaito/intel/oneapi/20
+	25.0/opt/compiler/lib:/home/hirotosaito/intel/oneapi/2025.0/lib:/home/h
+	irotosaito/hdf5/hdf5-1.12.3/hdf5/lib:/home/hirotosaito/miniconda3/envs/
+	mae/lib:/home/hirotosaito/arpack-ng-3.9.1/build/lib:/home/hirotosaito/l
+	ocal/lib:/home/hirotosaito/intel/oneapi/2025.0/opt/mpi/libfabric/lib:/h
+	ome/hirotosaito/intel/oneapi/2025.0/opt/compiler/lib:/home/hirotosaito/
+	intel/oneapi/2025.0/lib,
+	CONDA_EXE=/home/hirotosaito/miniconda3/bin/conda,
+	SSH_CONNECTION=172.17.4.2 53444 172.17.5.177 22,
+	OCL_ICD_FILENAMES=/home/hirotosaito/intel/oneapi/2025.0/lib/libinteloc
+	l.so,MODULES_RUN_QUARANTINE=LD_LIBRARY_PATH LD_PRELOAD,LANG=en_US.UTF-8,
+	HISTCONTROL=ignoredups,HOSTNAME=toki,
+	IPPROOT=/home/hirotosaito/intel/oneapi/2025.0,
+	OLDPWD=/home/hirotosaito,CCL_CONFIGURATION_PATH=,
+	C_INCLUDE_PATH=/home/hirotosaito/intel/oneapi/2025.0/include:/home/hir
+	otosaito/intel/oneapi/2025.0/include,COLORTERM=truecolor,
+	GSETTINGS_SCHEMA_DIR_CONDA_BACKUP=,
+	CONDA_PREFIX=/home/hirotosaito/miniconda3/envs/mae,
+	VSCODE_GIT_ASKPASS_EXTRA_ARGS=,
+	Pti_DIR=/home/hirotosaito/intel/oneapi/2025.0/lib/cmake/pti,
+	DYLD_LIBRARY_PATH=/home/hirotosaito/intel/oneapi/2025.0/lib:/home/hiro
+	tosaito/intel/oneapi/2025.0/lib,
+	FI_PROVIDER_PATH=/home/hirotosaito/intel/oneapi/2025.0/opt/mpi/libfabr
+	ic/lib/prov:/usr/lib64/libfabric,S_COLORS=auto,_CE_M=,
+	which_declare=declare -f,
+	INTEL_PYTHONHOME=/home/hirotosaito/intel/oneapi/2025.0/opt/debugger,
+	CLASSPATH=/home/hirotosaito/intel/oneapi/2025.0/share/java:/home/hirot
+	osaito/intel/oneapi/2025.0/share/java,XDG_SESSION_ID=4821,
+	MODULES_CMD=/usr/share/Modules/libexec/modulecmd.tcl,USER=hirotosaito,
+	CMPLR_ROOT=/home/hirotosaito/intel/oneapi/2025.0,
+	CONDA_PREFIX_5=/home/hirotosaito/miniconda3,
+	CONDA_PREFIX_4=/home/hirotosaito/miniconda3/envs/mae,
+	CONDA_PREFIX_1=/home/hirotosaito/miniconda3,
+	CONDA_PREFIX_3=/home/hirotosaito/miniconda3,
+	CONDA_PREFIX_2=/home/hirotosaito/miniconda3/envs/mae,
+	VTUNE_PROFILER_2025_DIR=/home/hirotosaito/intel/oneapi/vtune/2025.0,
+	CCL_CONFIGURATION=cpu_gpu_dpcpp,
+	PWD=/home/hirotosaito/github_projects/aiida_test/aiida_run/c7/65/9fc7-
+	dd8a-444c-986b-9011d8b8ae45,
+	DNNLROOT=/home/hirotosaito/intel/oneapi/2025.0,
+	SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass,
+	HOME=/home/hirotosaito,CCL_ROOT=/home/hirotosaito/intel/oneapi/2025.0,
+	CONDA_PYTHON_EXE=/home/hirotosaito/miniconda3/bin/python,
+	BROWSER=/home/hirotosaito/.vscode-server/cli/servers/Stable-91fbdddc47
+	bc9c09064bf7acf133d22631cbf083/server/bin/helpers/browser.sh,
+	GDB_INFO=/home/hirotosaito/intel/oneapi/2025.0/share/info/:/home/hirot
+	osaito/intel/oneapi/2025.0/share/info/,
+	VSCODE_GIT_ASKPASS_NODE=/home/hirotosaito/.vscode-server/cli/servers/S
+	table-91fbdddc47bc9c09064bf7acf133d22631cbf083/server/node,
+	CMAKE_PREFIX_PATH=/home/hirotosaito/intel/oneapi/dal/2025.0/etc/../lib
+	/cmake/pti:/home/hirotosaito/intel/oneapi/2025.0:/home/hirotosaito/inte
+	l/oneapi/dal/2025.0/etc/../lib/cmake/pti:/home/hirotosaito/intel/oneapi
+	/2025.0,INTEL_TARGET_ARCH=intel64,TERM_PROGRAM=vscode,
+	SSH_CLIENT=172.17.4.2 53444 22,TERM_PROGRAM_VERSION=1.96.3,
+	CPATH=/home/hirotosaito/intel/oneapi/dal/2025.0/etc/../include:/home/h
+	irotosaito/intel/oneapi/2025.0/include:/home/hirotosaito/intel/oneapi/d
+	al/2025.0/etc/../include:/home/hirotosaito/intel/oneapi/2025.0/include,
+	XDG_DATA_DIRS=/home/hirotosaito/.local/share/flatpak/exports/share:/va
+	r/lib/flatpak/exports/share:/usr/local/share:/usr/share,
+	SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem,
+	DALROOT=/home/hirotosaito/intel/oneapi/2025.0,
+	DPL_ROOT=/home/hirotosaito/intel/oneapi/2025.0,IPP_VERSION=2022.0.0,
+	_CE_CONDA=,
+	NLSPATH=/home/hirotosaito/intel/oneapi/2025.0/lib/compiler/locale/%l_%
+	t/%N:/home/hirotosaito/intel/oneapi/2025.0/lib/locale/%l_%t/%N:/home/hi
+	rotosaito/intel/oneapi/2025.0/lib/compiler/locale/%l_%t/%N:/home/hiroto
+	saito/intel/oneapi/2025.0/lib/locale/%l_%t/%N,
+	GSETTINGS_SCHEMA_DIR=/home/hirotosaito/miniconda3/envs/mae/share/glib-
+	2.0/schemas,
+	VSCODE_IPC_HOOK_CLI=/run/user/1710/vscode-ipc-2fd3cc96-79f3-40dc-bcaf-
+	42d8345f85aa.sock,
+	LIBRARY_PATH=/home/hirotosaito/intel/oneapi/2025.0/lib:/home/hirotosai
+	to/intel/oneapi/2025.0/lib,
+	IPPCRYPTOROOT=/home/hirotosaito/intel/oneapi/2025.0,
+	SETVARS_COMPLETED=1,LOADEDMODULES=,IPP_TARGET_ARCH=intel64,
+	DIAGUTIL_PATH=/home/hirotosaito/intel/oneapi/2025.0/etc/dpct/sys_check
+	/sys_check.sh:/home/hirotosaito/intel/oneapi/2025.0/etc/dpct/sys_check/
+	sys_check.sh,CONDA_PROMPT_MODIFIER=(mae),IPPCP_TARGET_ARCH=intel64,
+	MAIL=/var/spool/mail/hirotosaito,
+	ADVISOR_2025_DIR=/home/hirotosaito/intel/oneapi/advisor/2025.0,
+	VSCODE_GIT_ASKPASS_MAIN=/home/hirotosaito/.vscode-server/cli/servers/S
+	table-91fbdddc47bc9c09064bf7acf133d22631cbf083/server/extensions/git/di
+	st/askpass-main.js,TERM=xterm-256color,SHELL=/bin/bash,
+	APM=/home/hirotosaito/intel/oneapi/advisor/2025.0/perfmodels,
+	IPPCRYPTOVERSION=2021.9,SHLVL=6,
+	PYTHONPATH=/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito
+	/miniconda3/envs/mae/bin:/home/hirotosaito/intel/oneapi/advisor/2025.0/
+	pythonapi:/home/hirotosaito/miniconda3/envs/mae/lib/python312.zip:/home
+	/hirotosaito/miniconda3/envs/mae/lib/python3.12:/home/hirotosaito/minic
+	onda3/envs/mae/lib/python3.12/lib-dynload:/home/hirotosaito/miniconda3/
+	envs/mae/lib/python3.12/site-packages,
+	VSCODE_GIT_IPC_HANDLE=/run/user/1710/vscode-git-67519ec0e4.sock,
+	VTUNE_PROFILER_DIR=/home/hirotosaito/intel/oneapi/vtune/2025.0,
+	MANPATH=/home/hirotosaito/intel/oneapi/2025.0/share/man:/home/hirotosa
+	ito/intel/oneapi/2025.0/share/man:::/opt/pbs/share/man:/opt/pbs/share/m
+	an:/opt/pbs/share/man,
+	MODULEPATH=/etc/scl/modulefiles:/etc/scl/modulefiles:/etc/scl/modulefi
+	les:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefi
+	les,SSL_CERT_DIR=/etc/pki/tls/certs,LOGNAME=hirotosaito,
+	DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1710/bus,
+	GIT_ASKPASS=/home/hirotosaito/.vscode-server/cli/servers/Stable-91fbdd
+	dc47bc9c09064bf7acf133d22631cbf083/server/extensions/git/dist/askpass.s
+	h,XDG_RUNTIME_DIR=/run/user/1710,
+	ONEAPI_ROOT=/home/hirotosaito/intel/oneapi/2025.0,
+	CPLUS_INCLUDE_PATH=/home/hirotosaito/intel/oneapi/2025.0/include:/home
+	/hirotosaito/intel/oneapi/2025.0/include,
+	MKLROOT=/home/hirotosaito/intel/oneapi/2025.0,
+	MODULEPATH_modshare=/usr/share/Modules/modulefiles:2:/etc/modulefiles:
+	2:/usr/share/modulefiles:2,
+	PATH=/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/local
+	/bin:/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/minico
+	nda3/envs/mae/bin:/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirot
+	osaito/local/bin:/home/hirotosaito/intel/oneapi/vtune/2025.0/bin64:/hom
+	e/hirotosaito/intel/oneapi/advisor/2025.0/bin64:/home/hirotosaito/intel
+	/oneapi/2025.0/bin:/home/hirotosaito/.vscode-server/cli/servers/Stable-
+	91fbdddc47bc9c09064bf7acf133d22631cbf083/server/bin/remote-cli:/home/hi
+	rotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/miniconda3/condabin
+	:/home/hirotosaito/miniconda3/envs/mae/bin:/home/hirotosaito/local/bin:
+	/home/hirotosaito/intel/oneapi/vtune/2025.0/bin64:/home/hirotosaito/int
+	el/oneapi/advisor/2025.0/bin64:/home/hirotosaito/intel/oneapi/2025.0/bi
+	n:/home/hirotosaito/.local/bin:/home/hirotosaito/bin:/usr/share/Modules
+	/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/op
+	t/pbs/bin:/opt/pbs/bin,TBBROOT=/home/hirotosaito/intel/oneapi/2025.0,
+	DEBUGINFOD_URLS=https://debuginfod.centos.org/,
+	AIIDA_PATH=/home/hirotosaito/.aiida,MODULESHOME=/usr/share/Modules,
+	PKG_CONFIG_PATH=/home/hirotosaito/miniconda3/envs/mae/lib/pkgconfig:/h
+	ome/hirotosaito/local/lib/pkgconfig:/home/hirotosaito/miniconda3/envs/m
+	ae/lib/pkgconfig:/home/hirotosaito/local/lib/pkgconfig:/home/hirotosait
+	o/intel/oneapi/vtune/2025.0/include/pkgconfig/lib64:/home/hirotosaito/i
+	ntel/oneapi/advisor/2025.0/include/pkgconfig/lib64:/home/hirotosaito/in
+	tel/oneapi/2025.0/lib/pkgconfig:/home/hirotosaito/miniconda3/envs/mae/l
+	ib/pkgconfig:/home/hirotosaito/local/lib/pkgconfig:/home/hirotosaito/in
+	tel/oneapi/vtune/2025.0/include/pkgconfig/lib64:/home/hirotosaito/intel
+	/oneapi/advisor/2025.0/include/pkgconfig/lib64:/home/hirotosaito/intel/
+	oneapi/2025.0/lib/pkgconfig,CONDA_DEFAULT_ENV=mae,
+	INFOPATH=/home/hirotosaito/intel/oneapi/2025.0/share/info:/home/hiroto
+	saito/intel/oneapi/2025.0/share/info,
+	I_MPI_ROOT=/home/hirotosaito/intel/oneapi/2025.0,HISTSIZE=1000,
+	LESSOPEN=||/usr/bin/lesspipe.sh %s,
+	BASH_FUNC_which%%=() {  ( alias; eval ${which_declare} ) | /usr/bin/wh
+	ich --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+	
+},
+	BASH_FUNC_module%%=() {  unset _mlshdbg; if [ \"${MODULES_SILENT_SHELL
+	_DEBUG:-0}\" = \'1\' ]; then
+ case \"$-\" in 
+ *v*x*)
+ set +vx; _mlshdb
+	g=\'vx\'
+ ;; *v*)
+ set +v; _mlshdbg=\'v\'
+ ;; *x*)
+ set +x; _mlshdbg=\'
+	x\'
+ ;; *)
+ _mlshdbg=\'\'
+ ;; esac; fi; unset _mlre _mlIFS; if [ -n \"$
+	{IFS+x}\" ]; then
+ _mlIFS=$IFS; fi; IFS=\' \'; for _mlv in ${MODULES_RU
+	N_QUARANTINE:-}; do
+ if [ \"${_mlv}\" = \"${_mlv##*[!A-Za-z0-9_]}\" -a 
+	\"${_mlv}\" = \"${_mlv#[0-9]}\" ]; then
+ if [ -n \"`eval \'echo ${\'$_m
+	lv\'+x}\'`\" ]; then
+ _mlre=\"${_mlre:-}${_mlv}_modquar=\'`eval \'echo 
+	${\'$_mlv\'}\'`\' \"; fi; _mlrv=\"MODULES_RUNENV_${_mlv}\"; _mlre=\"${_
+	mlre:-}${_mlv}=\'`eval \'echo ${\'$_mlrv\':-}\'`\' \"; fi; done; if [ -
+	n \"${_mlre:-}\" ]; then
+ eval `eval ${_mlre} /usr/bin/tclsh /usr/share
+	/Modules/libexec/modulecmd.tcl bash \'\"$@\"\'`; else
+ eval `/usr/bin/t
+	clsh /usr/share/Modules/libexec/modulecmd.tcl bash \"$@\"`; fi; _mlstat
+	us=$?; if [ -n \"${_mlIFS+x}\" ]; then
+ IFS=$_mlIFS; else
+ unset IFS; f
+	i; unset _mlre _mlv _mlrv _mlIFS; if [ -n \"${_mlshdbg:-}\" ]; then
+ se
+	t -$_mlshdbg; fi; unset _mlshdbg; return $_mlstatus
+},
+	BASH_FUNC__module_raw%%=() {  unset _mlshdbg; if [ \"${MODULES_SILENT_
+	SHELL_DEBUG:-0}\" = \'1\' ]; then
+ case \"$-\" in 
+ *v*x*)
+ set +vx; _m
+	lshdbg=\'vx\'
+ ;; *v*)
+ set +v; _mlshdbg=\'v\'
+ ;; *x*)
+ set +x; _mlshd
+	bg=\'x\'
+ ;; *)
+ _mlshdbg=\'\'
+ ;; esac; fi; unset _mlre _mlIFS; if [ -
+	n \"${IFS+x}\" ]; then
+ _mlIFS=; fi; IFS=\' \'; for _mlv in ${MODULES_R
+	UN_QUARANTINE:-}; do
+ if [ \"${_mlv}\" = \"${_mlv##*[!A-Za-z0-9_]}\" -a
+	 \"${_mlv}\" = \"${_mlv#[0-9]}\" ]; then
+ if [ -n \"`eval \'echo ${\'$_
+	mlv\'+x}\'`\" ]; then
+ _mlre=\"${_mlre:-}${_mlv}_modquar=\'`eval \'echo
+	 ${\'$_mlv\'}\'`\' \"; fi; _mlrv=\"MODULES_RUNENV_${_mlv}\"; _mlre=\"${
+	_mlre:-}${_mlv}=\'`eval \'echo ${\'$_mlrv\':-}\'`\' \"; fi; done; if [ 
+	-n \"${_mlre:-}\" ]; then
+ eval `eval ${_mlre} /usr/bin/tclsh /usr/shar
+	e/Modules/libexec/modulecmd.tcl bash \'\"$@\"\'`; else
+ eval `/usr/bin/
+	tclsh /usr/share/Modules/libexec/modulecmd.tcl bash \"$@\"`; fi; _mlsta
+	tus=$?; if [ -n \"${_mlIFS+x}\" ]; then
+ IFS=$_mlIFS; else
+ unset IFS; 
+	fi; unset _mlre _mlv _mlrv _mlIFS; if [ -n \"${_mlshdbg:-}\" ]; then
+ s
+	et -$_mlshdbg; fi; unset _mlshdbg; return $_mlstatus
+},
+	BASH_FUNC_switchml%%=() {  typeset swfound=1; if [ \"${MODULES_USE_COM
+	PAT_VERSION:-0}\" = \'1\' ]; then
+ typeset swname=\'main\'; if [ -e /us
+	r/share/Modules/libexec/modulecmd.tcl ]; then
+ typeset swfound=0; unset
+	 MODULES_USE_COMPAT_VERSION; fi; else
+ typeset swname=\'compatibility\'
+	; if [ -e /usr/share/Modules/libexec/modulecmd-compat ]; then
+ typeset 
+	swfound=0; MODULES_USE_COMPAT_VERSION=1; export MODULES_USE_COMPAT_VERS
+	ION; fi; fi; if [ $swfound -eq 0 ]; then
+ echo \"Switching to Modules $
+	swname version\"; source /usr/share/Modules/init/bash; else
+ echo \"Can
+	not switch to Modules $swname version\,
+	 command not found\"; return 1; fi
+},
+	BASH_FUNC_scl%%=() {  if [ \"$1\" = \"load\" -o \"$1\" = \"unload\" ];
+	 then
+ eval \"module $@\"; else
+ /usr/bin/scl \"$@\"; fi
+},
+	BASH_FUNC_ml%%=() {  module ml \"$@\"
+},_=/opt/pbs/bin/qsub,
+	PBS_O_QUEUE=GroupC,PBS_O_HOST=localhost
+    comment = Job run at Wed Jan 29 at 05:42 on (sola1:ncpus=1)
+    etime = Wed Jan 29 05:42:54 2025
+    run_count = 1
+    Exit_status = 0
+    Submit_arguments = _aiidasubmit.sh
+    project = _pbs_project_default
+    Submit_Host = localhost
+

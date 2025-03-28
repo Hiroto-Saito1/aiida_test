@@ -1,3 +1,5 @@
+https://eminamitani.github.io/website/2021/03/25/aiida_2/ を参照
+
 # 最初にやること
 ## グローバル設定
 ~/.aiida ディレクトリを作り、ここにグローバル設定を保存する。
@@ -41,8 +43,21 @@ verdi computer list
 ```
 
 ## QEの登録
-qe-code.yml に実行ファイルのパスをまとめておく。
+qe-pw.yml に pw.x のパスを書く。
 ```
-verdi code setup --condig qe-code.yaml
+verdi code create core.code.installed --config qe-pw.yml
+verdi code list
+```
+projwfc.x なども同様に、個別のymlファイルを書いて登録する。
+
+## 擬ポテンシャルの設定
+```
+aiida-pseudo install sssp
+aiida-pseudo list
+```
+Full relrativisticなポテンシャルがほしいときには、オプションで指定する。
+```
+aiida-pseudo install pseudo-dojo -x PBE -r FR -f upf
 ```
 
+# 計算の実行

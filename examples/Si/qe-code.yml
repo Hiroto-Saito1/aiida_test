@@ -1,9 +1,0 @@
----
-label: "qe-pw"
-description: "quantum_espresso"
-input_plugin: "quantumespresso.pw"
-on_computer: true
-remote_abs_path: "/home/hirotosaito/codes/qe-7.3_mag/bin/pw.x"
-computer: "localhost"
-prepend_text: " "
-append_text: " "

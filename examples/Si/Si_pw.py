@@ -4,12 +4,14 @@ from aiida.plugins import DataFactory
 from aiida.engine import submit, run
 
 load_profile("aiida_test")
-code = load_code("pw@localhost")
+code = load_code("qe-pw@localhost")
 builder = code.get_builder()
 
+# structure
 structure = load_node(2)
 builder.structure = structure
 
+# pseudo
 pseudo_family = load_group("SSSP/1.3/PBE/efficiency")
 pseudos = pseudo_family.get_pseudos(structure=structure)
 builder.pseudos = pseudos

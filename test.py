@@ -31,9 +31,7 @@ kpoints.set_kpoints_mesh([4, 4, 4])
 builder.kpoints = kpoints
 
 builder.metadata.options.resources = {"num_machines": 1}
-builder.metadata.options.queue_name = "GroupC"
+builder.metadata.options.queue_name = "GroupE"
 builder.metadata.options.import_sys_environment = False  # -V オプションを削除する
-builder.metadata.options.scheduler_stdout = ""
-builder.metadata.options.scheduler_stderr = ""
 
 calcjob_node = submit(builder)

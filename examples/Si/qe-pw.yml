@@ -1,6 +1,7 @@
 ---
 label: "qe-pw"
 description: "quantum_espresso pw.x executable"
+default_calc_job_plugin: "quantumespresso.pw"
 computer: "localhost"
 filepath_executable: "/home/hirotosaito/codes/qe-7.3_mag/bin/pw.x"
 prepend_text: " "

@@ -2,20 +2,13 @@ from aiida import load_profile
 from aiida.orm import load_code, load_node, load_group, Dict
 from aiida.plugins import DataFactory
 from aiida.engine import submit, run
+import ase.io
 
 load_profile("aiida_test")
 code = load_code("qe-pw@localhost")
 builder = code.get_builder()
 
-# structure
-structure = load_node(2)
-builder.structure = structure
-
-# pseudo
-pseudo_family = load_group("SSSP/1.3/PBE/efficiency")
-pseudos = pseudo_family.get_pseudos(structure=structure)
-builder.pseudos = pseudos
-
+# parameters
 parameters = {
     "CONTROL": {
         "calculation": "scf",  # self-consistent field
@@ -27,11 +20,24 @@ parameters = {
 }
 builder.parameters = Dict(parameters)
 
+# structure
+StructureData = DataFactory("core.structure")
+ase_structure = ase.io.read("Si.cif")
+structure = StructureData(ase=ase_structure)
+builder.structure = structure
+
+# pseudo
+pseudo_family = load_group("SSSP/1.3/PBE/efficiency")
+pseudos = pseudo_family.get_pseudos(structure=structure)
+builder.pseudos = pseudos
+
+# kpoint
 KpointsData = DataFactory("core.array.kpoints")
 kpoints = KpointsData()
 kpoints.set_kpoints_mesh([4, 4, 4])
 builder.kpoints = kpoints
 
+# submit
 builder.metadata.options.resources = {"num_machines": 1}
 builder.metadata.options.queue_name = "GroupE"
 builder.metadata.options.import_sys_environment = False  # -V オプションを削除する

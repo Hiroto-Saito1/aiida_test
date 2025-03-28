@@ -8,8 +8,6 @@ https://eminamitani.github.io/website/2021/03/25/aiida_2/ を参照
 conda activate aiida
 rabbitmq-server -detached
 ```
-
-# 2回目以降
 ## プロファイルの設定 
 プロジェクトごとにプロファイルを作る。
 ここでは aiida_test プロファイルを作る。メールアドレスは入力必須。
@@ -27,19 +25,10 @@ rabbitmq-server -detached
 ```
 をもう一度やる。
 
-
 ## デーモンの起動
 ```
 verdi daemon start
 verdi status
-```
-
-## localhostの設定
-localhost.yml にまとめておく。パスの設定などは setting.sh にまとめておく。
-```
-verdi computer setup --config localhost.yml
-verdi computer configure core.local localhost
-verdi computer list
 ```
 
 ## QEの登録
@@ -60,4 +49,24 @@ Full relrativisticなポテンシャルがほしいときには、オプショ�
 aiida-pseudo install pseudo-dojo -x PBE -r FR -f upf
 ```
 
+# 2回目以降
+## localhostの設定
+localhost.yml に計算結果の出力先ディレクトリなどをまとめておく。これだけ計算ごとにディレクトリに置いておけば良さそう。
+
+qsubにsubmitする際の環境パスの設定などは setting.sh にまとめておく。
+```
+verdi computer setup --config localhost.yml
+verdi computer configure core.local localhost
+verdi computer list
+```
+
 # 計算の実行
+```
+python Si_pw.py
+verdi process list -a
+```
+
+計算結果の確認
+```
+verdi process show <pk>
+```

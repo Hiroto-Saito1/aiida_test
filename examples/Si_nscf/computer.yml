@@ -1,0 +1,9 @@
+---
+label: "Si_nscf"
+hostname: "localhost"
+transport: "core.local"
+scheduler: "core.pbspro"
+work_dir: "/home2/hirotosaito/github_projects/aiida_test/examples/Si_nscf"
+mpirun_command: "mpirun -np {tot_num_mpiprocs}"
+mpiprocs_per_machine: "1"
+prepend_text: "source /home2/hirotosaito/github_projects/aiida_test/examples/Si_nscf/setting.sh"

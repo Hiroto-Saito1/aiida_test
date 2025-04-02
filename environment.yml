@@ -9,12 +9,13 @@ dependencies:
   - _openmp_mutex=4.5=2_gnu
   - aiida-core.services=2.2.2=hd8ed1ab_0
   - archspec=0.2.3=pyhd3eb1b0_0
+  - black=24.10.0=py312h06a4308_0
   - boltons=24.1.0=py312h06a4308_0
   - brotli-python=1.0.9=py312h6a678d5_9
   - bzip2=1.0.8=h5eee18b_6
   - c-ares=1.19.1=h5eee18b_0
-  - ca-certificates=2025.1.31=hbcca054_0
-  - certifi=2024.12.14=pyhd8ed1ab_0
+  - ca-certificates=2025.2.25=h06a4308_0
+  - certifi=2025.1.31=py312h06a4308_0
   - cffi=1.17.1=py312h1fdaa30_1
   - charset-normalizer=3.3.2=pyhd3eb1b0_0
   - conda=25.1.1=py312h06a4308_0
@@ -59,11 +60,13 @@ dependencies:
   - libzlib=1.2.13=h4ab18f5_6
   - lz4-c=1.9.4=h6a678d5_1
   - menuinst=2.2.0=py312h06a4308_0
+  - mypy_extensions=1.0.0=py312h06a4308_0
   - ncurses=6.4=h6a678d5_0
   - nlohmann_json=3.11.2=h6a678d5_0
   - openldap=2.6.4=h42fbc30_0
   - openssl=3.4.0=h7b32b05_1
   - packaging=24.2=py312h06a4308_0
+  - pathspec=0.10.3=py312h06a4308_0
   - pcre2=10.42=hebb0a14_1
   - perl=5.32.1=7_hd590300_perl5
   - pip=25.0=py312h06a4308_0

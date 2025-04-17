@@ -33,6 +33,8 @@ verdi code list
 # 計算の実行
 結晶構造は Si.cif から読まれる。
 ```
+export PYTHONPATH="/home2/hirotosaito/github_projects/aiida_test/examples/Si_wan:$PYTHONPATH"
+verdi daemon restart
 python run_workchain.py
 verdi process list -a
 ```

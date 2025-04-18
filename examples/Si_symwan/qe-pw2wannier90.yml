@@ -1,0 +1,8 @@
+---
+label: "qe-pw2wannier90"
+description: "quantum_espresso pw2wannier90.x executable"
+default_calc_job_plugin: "quantumespresso.pw2wannier90"
+computer: "Si_wan"
+filepath_executable: "/home/hirotosaito/codes/qe-7.3_mag/PP/src_orig/pw2wannier90.x"
+prepend_text: " "
+append_text: " "

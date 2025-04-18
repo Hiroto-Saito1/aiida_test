@@ -26,19 +26,8 @@ kpoints_scf.set_kpoints_mesh([4, 4, 4])
 kpoints_nscf = KpointsData()
 kpoints_nscf.set_kpoints_mesh([8, 8, 8])
 
-# 5) バンド構造用パス
-kpoint_path = Dict(
-    dict={
-        "point_coords": {
-            "G": [0.0, 0.0, 0.0],
-            "X": [0.5, 0.0, 0.5],
-            "L": [0.5, 0.5, 0.5],
-        },
-        "path": [("G", "X"), ("X", "L"), ("L", "G")],
-    }
-)
 
-# 6) 投影関数の生成
+# 5) 投影関数の生成
 projections = generate_projections(
     {
         "kind_name": "Si",
@@ -49,7 +38,7 @@ projections = generate_projections(
     structure=structure,
 )
 
-# 7) ワークチェインのサブミット
+# 6) ワークチェインのサブミット
 submit(
     SiMinimalW90WorkChain,
     pw_code=pw_code,
@@ -60,7 +49,6 @@ submit(
     kpoints_scf=kpoints_scf,
     kpoints_nscf=kpoints_nscf,
     num_wann=8,
-    kpoint_path=kpoint_path,
     projections=projections,
     num_machines=12,
     queue_name="GroupA",

@@ -1,0 +1,8 @@
+---
+label: "w90-wannier90"
+description: "Wannier90 wannier90.x executable"
+default_calc_job_plugin: "wannier90.wannier90"
+computer: "Si_wan"
+filepath_executable: "/home/hirotosaito/codes/qe-7.2/wannier90-3.1.0/wannier90.x"
+prepend_text: " "
+append_text: " "

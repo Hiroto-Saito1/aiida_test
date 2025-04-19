@@ -1,101 +1,76 @@
-################################################################################
-# Copyright (c), AiiDA team and individual contributors.
-# All rights reserved.
-# This file is part of the AiiDA-wannier90 code adaptations.
-################################################################################
-"""A minimal WorkChain to run Wannier90 for Si with recommended cutoffs and dynamic queue settings."""
+import io
 from aiida import orm
 from aiida.engine import ToContext, WorkChain, calcfunction
-from aiida.orm import Dict, Group, User, SinglefileData, Bool, Str, KpointsData, Int
+from aiida.orm import (
+    Dict,
+    Group,
+    User,
+    SinglefileData,
+    Bool,
+    Str,
+    KpointsData,
+    Int,
+    OrbitalData,
+    StructureData,
+    FolderData,
+    RemoteData,
+)
 from aiida.plugins import CalculationFactory
 
 
-@calcfunction
-def get_explicit_kpoints(kpoints: KpointsData) -> KpointsData:
-    """Convert a Monkhorst–Pack mesh to an explicit k-point list."""
-    explicit = KpointsData()
-    explicit.set_kpoints(kpoints.get_kpoints_mesh(print_list=True))
-    return explicit
-
-
 class SiMinimalW90WorkChain(WorkChain):
-    """Workchain to run SCF, NSCF (explicit grid), Wannier90(pp), pw2wannier90, and Wannier90 for Si with user-defined num_wann."""
+    """
+    Si の最小限 Wannier90 ワークチェーン。
+
+    処理フロー:
+      1. SCF 計算 (pw.x)
+      2. NSCF 計算 (pw.x)
+      3. Wannier90 前処理 (w90 -pp)
+      4. pw2wannier90
+      5. Wannier90 メイン実行
+      6. aiida_hr.dat, aiida_tb.dat の抽出
+
+    主な特徴:
+      - 擬ポテンシャルの推奨カットオフを自動取得
+      - num_bands = 2 * num_wann の設定
+      - calcfunction 経由でファイル抽出しプロヴェナンスを保護
+    """
 
     @classmethod
     def define(cls, spec):
         super().define(spec)
-        spec.input("pw_code", valid_type=orm.Code, help="pw.x code for SCF/NSCF")
+        spec.input("pw_code", valid_type=orm.Code, help="pw.x コード")
         spec.input(
-            "pw2wannier90_code",
-            valid_type=orm.Code,
-            help="pw2wannier90.x code for Pw2Wannier90Calculation",
+            "pw2wannier90_code", valid_type=orm.Code, help="pw2wannier90.x コード"
         )
+        spec.input("wannier_code", valid_type=orm.Code, help="wannier90.x コード")
+        spec.input("structure", valid_type=StructureData, help="Si 構造データ")
+        spec.input("pseudo_family", valid_type=Str, help="擬ポテンシャルファミリー")
         spec.input(
-            "wannier_code",
-            valid_type=orm.Code,
-            help="wannier90.x code for Wannier90Calculation",
-        )
-        spec.input(
-            "structure", valid_type=orm.StructureData, help="Si crystal structure"
-        )
-        spec.input(
-            "pseudo_family",
-            valid_type=orm.Str,
-            help="Label of the pseudo potential family (pseudo.family.sssp)",
-        )
-        spec.input(
-            "num_machines",
-            valid_type=orm.Int,
-            required=False,
-            default=lambda: orm.Int(1),
-            help="Number of machines per calc",
+            "num_machines", valid_type=Int, default=lambda: Int(1), help="使用マシン数"
         )
         spec.input(
             "max_wallclock_seconds",
-            valid_type=orm.Int,
-            required=False,
-            default=lambda: orm.Int(3600),
-            help="Max wallclock time (s)",
+            valid_type=Int,
+            default=lambda: Int(3600 * 24 * 7),
+            help="最大実行時間(秒)",
         )
         spec.input(
             "queue_name",
             valid_type=Str,
-            required=False,
             default=lambda: Str("GroupA"),
-            help="Queue name to submit jobs",
+            help="ジョブキュー名",
         )
         spec.input(
             "import_sys_environment",
             valid_type=Bool,
-            required=False,
             default=lambda: Bool(False),
-            help="Whether to import system environment variables",
+            help="システム環境変数を読み込むか否か",
         )
-        spec.input(
-            "num_wann",
-            valid_type=orm.Int,
-            help="Number of Wannier functions to generate",
-        )
-        spec.input(
-            "kpoints_scf",
-            valid_type=orm.KpointsData,
-            help="Kpoints mesh for SCF",
-        )
-        spec.input(
-            "kpoints_nscf",
-            valid_type=orm.KpointsData,
-            help="Kpoints mesh or explicit list for NSCF/Wannier",
-        )
-        spec.input(
-            "kpoint_path",
-            valid_type=orm.Dict,
-            help="High-symmetry path for bands interpolation",
-        )
-        spec.input(
-            "projections",
-            valid_type=orm.OrbitalData,
-            help="Wannierisation projections",
-        )
+        spec.input("num_wann", valid_type=Int, help="Wannier 関数数")
+        spec.input("kpoints_scf", valid_type=KpointsData, help="SCF 用 k 点メッシュ")
+        spec.input("kpoints_nscf", valid_type=KpointsData, help="NSCF/Wannier 用 k 点")
+        spec.input("projections", valid_type=OrbitalData, help="射影設定")
 
         spec.outline(
             cls.run_pw_scf,
@@ -103,14 +78,17 @@ class SiMinimalW90WorkChain(WorkChain):
             cls.run_w90_pp,
             cls.run_pw2wan,
             cls.run_w90,
+            cls.collect_tb_files,
         )
 
-        spec.output("scf_output", valid_type=orm.Dict)
-        spec.output("nscf_output", valid_type=orm.Dict)
-        spec.output("nnkp_file", valid_type=orm.SinglefileData)
-        spec.output("p2wannier_output", valid_type=orm.Dict)
-        spec.output("matrices_folder", valid_type=orm.FolderData)
-        spec.output("pw2wan_remote_folder", valid_type=orm.RemoteData)
+        spec.output("scf_output", valid_type=Dict)
+        spec.output("nscf_output", valid_type=Dict)
+        spec.output("nnkp_file", valid_type=SinglefileData)
+        spec.output("p2wannier_output", valid_type=Dict)
+        spec.output("matrices_folder", valid_type=FolderData)
+        spec.output("pw2wan_remote_folder", valid_type=RemoteData)
+        spec.output("aiida_hr", valid_type=SinglefileData, help="aiida_hr.dat")
+        spec.output("aiida_tb", valid_type=SinglefileData, help="aiida_tb.dat")
 
     def _metadata_options(self):
         return {
@@ -121,16 +99,20 @@ class SiMinimalW90WorkChain(WorkChain):
         }
 
     def run_pw_scf(self):
-        """Run SCF using recommended cutoffs from pseudo.family.sssp"""
-        user = User.collection.get_default()
-        pseudo_group = Group.collection.get(
-            label=self.inputs.pseudo_family.value, user=user
-        )
-        pseudos = pseudo_group.get_pseudos(structure=self.inputs.structure)
-        cutoffs = pseudo_group.get_recommended_cutoffs(structure=self.inputs.structure)
-        ecutwfc, ecutrho = cutoffs
+        """
+        推奨カットオフを用いて SCF 計算を実行します。
 
-        scf_params = {
+        Returns:
+            Dict: SCF 計算の結果パラメータ (scf_output)
+        """
+        user = User.collection.get_default()
+        group = Group.collection.get(label=self.inputs.pseudo_family.value, user=user)
+        pseudos = group.get_pseudos(structure=self.inputs.structure)
+        ecutwfc, ecutrho = group.get_recommended_cutoffs(
+            structure=self.inputs.structure
+        )
+
+        params = {
             "CONTROL": {"calculation": "scf"},
             "SYSTEM": {"ecutwfc": ecutwfc, "ecutrho": ecutrho},
         }
@@ -138,76 +120,89 @@ class SiMinimalW90WorkChain(WorkChain):
         builder.code = self.inputs.pw_code
         builder.structure = self.inputs.structure
         builder.pseudos = pseudos
-        builder.parameters = orm.Dict(scf_params)
+        builder.parameters = Dict(params)
         builder.kpoints = self.inputs.kpoints_scf
         builder.metadata.options = self._metadata_options()
 
         running = self.submit(builder)
-        self.report(f"Launching PwCalculation<{running.pk}> (SCF)")
+        self.report(f"Launching SCF PwCalculation<{running.pk}>")
         return ToContext(pw_scf=running)
 
     def run_pw_nscf(self):
-        """Run NSCF with explicit k-grid and symmetry off (nosym)."""
+        """
+        nosym を有効にした NSCF 計算を実行します。
+
+        Returns:
+            Dict: NSCF 計算の結果パラメータ (nscf_output)
+        """
         self.out("scf_output", self.ctx.pw_scf.outputs.output_parameters)
-        nscf_params = self.ctx.pw_scf.inputs["parameters"].get_dict()
-        nscf_params["CONTROL"]["calculation"] = "nscf"
-        nscf_params.setdefault("SYSTEM", {})["nosym"] = True
-        # set bands at least twice num_wann
-        nscf_params["SYSTEM"]["nbnd"] = int(self.inputs.num_wann.value) * 2
+        params = self.ctx.pw_scf.inputs.parameters.get_dict()
+        params["CONTROL"]["calculation"] = "nscf"
+        params.setdefault("SYSTEM", {})["nosym"] = True
+        params["SYSTEM"]["nbnd"] = int(self.inputs.num_wann.value) * 2
 
         try:
             _ = self.inputs.kpoints_nscf.get_kpoints_mesh()
-            kpoints_explicit = get_explicit_kpoints(self.inputs.kpoints_nscf)
+            kpts = get_explicit_kpoints(self.inputs.kpoints_nscf)
         except AttributeError:
-            kpoints_explicit = self.inputs.kpoints_nscf
+            kpts = self.inputs.kpoints_nscf
 
         builder = CalculationFactory("quantumespresso.pw").get_builder()
         builder.code = self.inputs.pw_code
         builder.structure = self.inputs.structure
-        builder.pseudos = self.ctx.pw_scf.inputs["pseudos"]
-        builder.parameters = orm.Dict(nscf_params)
-        builder.kpoints = kpoints_explicit
+        builder.pseudos = self.ctx.pw_scf.inputs.pseudos
+        builder.parameters = Dict(params)
+        builder.kpoints = kpts
         builder.parent_folder = self.ctx.pw_scf.outputs.remote_folder
         builder.metadata.options = self._metadata_options()
 
         running = self.submit(builder)
-        self.report(f"Launching PwCalculation<{running.pk}> (NSCF explicit nosym)")
+        self.report(f"Launching NSCF PwCalculation<{running.pk}>")
         return ToContext(pw_nscf=running)
 
     def run_w90_pp(self):
-        """Generate .nnkp via Wannier90 -pp"""
+        """
+        Wannier90 前処理 (-pp) を実行し .nnkp ファイルを生成します。
+
+        Returns:
+            SinglefileData: nnkp_file
+        """
         self.out("nscf_output", self.ctx.pw_nscf.outputs.output_parameters)
-        num_wann = int(self.inputs.num_wann.value)
-        pp_params = {
-            "mp_grid": self.inputs.kpoints_nscf.get_kpoints_mesh()[0],
-            "num_wann": num_wann,
-            "num_bands": num_wann * 2,
-        }
+        nw = int(self.inputs.num_wann.value)
+        mesh, _ = self.inputs.kpoints_nscf.get_kpoints_mesh()
+        params = {"mp_grid": mesh, "num_wann": nw, "num_bands": nw * 2}
+
         builder = CalculationFactory("wannier90.wannier90").get_builder()
         builder.code = self.inputs.wannier_code
         builder.structure = self.inputs.structure
-        builder.parameters = orm.Dict(pp_params)
+        builder.parameters = Dict(params)
         builder.kpoints = self.inputs.kpoints_nscf
-        builder.kpoint_path = self.inputs.kpoint_path
         builder.projections = self.inputs.projections
-        builder.settings = orm.Dict({"postproc_setup": True})
+        builder.settings = Dict({"postproc_setup": True})
         builder.metadata.options = self._metadata_options()
 
         running = self.submit(builder)
-        self.report(f"Launching Wannier90<{running.pk}> (pp)")
+        self.report(f"Launching Wannier90(pp)<{running.pk}>")
         return ToContext(w90_pp=running)
 
     def run_pw2wan(self):
-        """Run pw2wannier90 using generated nnkp"""
+        """
+        pw2wannier90 を実行し AMN/MMN を取得します。
+
+        Returns:
+            Dict: p2wannier_output
+            FolderData: matrices_folder
+        """
         self.out("nnkp_file", self.ctx.w90_pp.outputs.nnkp_file)
-        p2w_params = {"inputpp": {"write_amn": True, "write_mmn": True}}
+        params = {"inputpp": {"write_amn": True, "write_mmn": True}}
         settings = {"ADDITIONAL_RETRIEVE_LIST": ["*.amn", "*.mmn"]}
+
         builder = CalculationFactory("quantumespresso.pw2wannier90").get_builder()
         builder.code = self.inputs.pw2wannier90_code
-        builder.parameters = orm.Dict(p2w_params)
+        builder.parameters = Dict(params)
         builder.parent_folder = self.ctx.pw_nscf.outputs.remote_folder
         builder.nnkp_file = self.ctx.w90_pp.outputs.nnkp_file
-        builder.settings = orm.Dict(settings)
+        builder.settings = Dict(settings)
         builder.metadata.options = self._metadata_options()
 
         running = self.submit(builder)
@@ -215,23 +210,97 @@ class SiMinimalW90WorkChain(WorkChain):
         return ToContext(pw2wan=running)
 
     def run_w90(self):
-        """Run final Wannier90 main run"""
+        """
+        Wannier90 メイン実行で write_hr, write_tb を有効化します。
+
+        Returns:
+            SinglefileData: aiida_hr
+            SinglefileData: aiida_tb
+        """
         self.out("matrices_folder", self.ctx.pw2wan.outputs.retrieved)
-        self.out("pw2wan_remote_folder", self.ctx.pw2wan.outputs.remote_folder)
+        self.out(
+            "pw2wan_remote_folder",
+            self.ctx.pw2wan.outputs.remote_folder,
+        )
         self.out("p2wannier_output", self.ctx.pw2wan.outputs.output_parameters)
-        main_params = self.ctx.w90_pp.inputs["parameters"].get_dict()
-        # override bands
-        main_params["num_bands"] = int(self.inputs.num_wann.value) * 2
+
+        params = self.ctx.w90_pp.inputs.parameters.get_dict()
+        params.update(
+            {
+                "num_bands": int(self.inputs.num_wann.value) * 2,
+                "write_hr": True,
+                "write_tb": True,
+                "dis_froz_max": self.ctx.pw_scf.outputs.output_parameters.get_dict().get(
+                    "fermi_energy", 0.0
+                )
+                + 1.0,
+            }
+        )
+
         builder = CalculationFactory("wannier90.wannier90").get_builder()
         builder.code = self.inputs.wannier_code
         builder.structure = self.inputs.structure
-        builder.parameters = orm.Dict(main_params)
+        builder.parameters = Dict(params)
         builder.kpoints = self.inputs.kpoints_nscf
-        builder.kpoint_path = self.inputs.kpoint_path
         builder.remote_input_folder = self.ctx.pw2wan.outputs.remote_folder
         builder.projections = self.inputs.projections
         builder.metadata.options = self._metadata_options()
 
         running = self.submit(builder)
-        self.report(f"Launching Wannier90<{running.pk}> (main)")
+        self.report(f"Launching Wannier90(main)<{running.pk}>")
         return ToContext(w90=running)
+
+    def collect_tb_files(self):
+        """
+        生成された aiida_hr.dat と aiida_tb.dat を calcfunction 経由で格納します。
+
+        Returns:
+            SinglefileData: aiida_hr
+            SinglefileData: aiida_tb
+        """
+        if "w90" not in self.ctx or not self.ctx.w90.is_finished_ok:
+            self.report(
+                f"Wannier90(main) calculation did not finish successfully: pk={getattr(
+                    self.ctx.get('w90', None), 'pk', 'N/A'
+                )}"
+            )
+
+        retrieved = self.ctx.w90.outputs.retrieved
+        hr_node = extract_file(retrieved=retrieved, filename=Str("aiida_hr.dat"))
+        tb_node = extract_file(retrieved=retrieved, filename=Str("aiida_tb.dat"))
+
+        self.out("aiida_hr", hr_node)
+        self.out("aiida_tb", tb_node)
+
+
+@calcfunction
+def extract_file(retrieved: FolderData, filename: Str) -> SinglefileData:
+    """
+    FolderData から指定ファイルを読み取り、SinglefileData として返します。
+
+    Args:
+        retrieved (FolderData): 出力を含むフォルダデータ
+        filename (Str): 取得するファイル名
+
+    Returns:
+        SinglefileData: 指定ファイルの内容を格納したノード
+    """
+    content = retrieved.get_object_content(filename.value, mode="rb")
+    return SinglefileData(file=io.BytesIO(content), filename=filename.value)
+
+
+@calcfunction
+def get_explicit_kpoints(kpoints: KpointsData) -> KpointsData:
+    """
+    Monkhorst-Pack メッシュを明示的な k 点リストに変換します。
+
+    Args:
+        kpoints (KpointsData): 元の k 点メッシュ
+
+    Returns:
+        KpointsData: 明示的な k 点リストを含む新規ノード
+    """
+    explicit = KpointsData()
+    mesh = kpoints.get_kpoints_mesh(print_list=True)
+    explicit.set_kpoints(mesh)
+    return explicit

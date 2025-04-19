@@ -5,6 +5,7 @@
 * k点を増やして nscf 計算
 * pw2wannier 計算
 * wannier90 計算
+* wannier-tools で AHC 計算
 
 という workchain を作ります。
 
@@ -34,6 +35,7 @@ verdi code list
 # 計算の実行
 結晶構造は Si.cif から読まれる。
 擬ポテンシャルもディレクトリ内の Si.rel-pbe-n-kjpaw_psl.0.1.UPF を使うように指定した。
+wt.in は自分で用意した。
 ```
 export PYTHONPATH="/home2/hirotosaito/github_projects/aiida_test/examples/Si_wt:$PYTHONPATH"
 verdi daemon restart

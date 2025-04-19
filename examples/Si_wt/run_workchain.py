@@ -14,6 +14,7 @@ structure = StructureData(ase=ase.io.read("Si.cif"))
 pw_code = load_code("qe-pw@Si_wt")
 pw2wannier90_code = load_code("qe-pw2wannier90@Si_wt")
 wannier_code = load_code("w90-wannier90@Si_wt")
+wt_code = load_code("wt-wt@Si_wt")
 
 pseudo_si = UpfData(Path("Si.rel-pbe-n-kjpaw_psl.0.1.UPF").resolve()).store()
 
@@ -32,12 +33,13 @@ submit(
     pw_code=pw_code,
     pw2wannier90_code=pw2wannier90_code,
     wannier_code=wannier_code,
+    wt_code=wt_code,
     structure=structure,
     pseudos={"Si": pseudo_si},
     kpoints_scf=kpoints_scf,
     kpoints_nscf=kpoints_nscf,
     num_wann=16,
     projections=projections,
-    num_machines=12,
+    num_machines=24,
     queue_name="GroupA",
 )

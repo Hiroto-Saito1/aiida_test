@@ -1,0 +1,8 @@
+---
+label: 'wt-wt'                             # 任意のラベル
+description: 'WannierTools wt.x executable'      # 説明
+default_calc_job_plugin: 'core.shell'       # 汎用シェル実行プラグイン
+computer: 'Si_wt'                          # 登録済みコンピュータ名
+filepath_executable: '/home/hirotosaito/codes/wannier_tools-2.7.1/bin/wt.x'
+prepend_text: " "
+append_text: " "                            # 実行後の追加コマンド

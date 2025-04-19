@@ -1,9 +1,9 @@
 ---
-label: "Si_wan"
+label: "Si_wt"
 hostname: "localhost"
 transport: "core.local"
 scheduler: "core.pbspro"
-work_dir: "/home2/hirotosaito/github_projects/aiida_test/examples/Si_wan"
+work_dir: "/home2/hirotosaito/github_projects/aiida_test/examples/Si_wt"
 mpirun_command: "mpirun -np {tot_num_mpiprocs}"
 mpiprocs_per_machine: "1"
-prepend_text: "source /home2/hirotosaito/github_projects/aiida_test/examples/Si_wan/setting.sh"
+prepend_text: "source /home2/hirotosaito/github_projects/aiida_test/examples/Si_wt/setting.sh"

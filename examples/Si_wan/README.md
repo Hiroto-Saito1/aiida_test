@@ -20,7 +20,7 @@ verdi computer list
 qsub にジョブを投げる際の最初の環境パスの設定などは、 setting.sh に書いておいて読み込むという形に設定した。
 
 
-## QE の登録
+## code の登録
 qe-pw.yml に pw.x の実行ファイルのパスを書く。
 ymlファイル内で computer の指定が必要。
 ```

@@ -36,6 +36,7 @@ class SiWtWorkChain(WorkChain):
 
         # runtime
         spec.input("num_machines", valid_type=Int, default=lambda: Int(1))
+        spec.input("ppn", valid_type=Int, default=lambda: Int(1))
         spec.input(
             "max_wallclock_seconds", valid_type=Int, default=lambda: Int(3600 * 24 * 7)
         )
@@ -65,10 +66,12 @@ class SiWtWorkChain(WorkChain):
         spec.output("wt_retrieved", valid_type=FolderData)
         spec.output("wt_output", valid_type=Dict)
 
-    # ---------- helpers ----------
     def _metadata_options(self):
         return {
-            "resources": {"num_machines": int(self.inputs.num_machines)},
+            "resources": {
+                "num_machines": int(self.inputs.num_machines),
+                "num_mpiprocs_per_machine": int(self.inputs.ppn.value),
+            },
             "max_wallclock_seconds": int(self.inputs.max_wallclock_seconds),
             "queue_name": self.inputs.queue_name.value,
             "import_sys_environment": bool(self.inputs.import_sys_environment.value),
@@ -81,7 +84,6 @@ class SiWtWorkChain(WorkChain):
             rho = max(rho, pseudo.base.attributes.get("cutoff_rho", 100.0))
         return wfc, rho
 
-    # ---------- steps ----------
 
     def run_pw_scf(self):
         ecutwfc, ecutrho = self._extract_max_cutoffs()
@@ -175,8 +177,16 @@ class SiWtWorkChain(WorkChain):
 
     def collect_tb_files(self):
         retrieved = self.ctx.w90.outputs.retrieved
-        self.out("aiida_hr", extract_file(retrieved, Str("aiida_hr.dat")))
-        self.out("aiida_tb", extract_file(retrieved, Str("aiida_tb.dat")))
+        # hr.dat
+        hr_sf = extract_file(retrieved, Str("aiida_hr.dat"))
+        hr_sf.label = "aiida_hr"
+        hr_sf.description = "Wannier90 generated hr.dat file"
+        self.out("aiida_hr", hr_sf)
+        # tb.dat
+        tb_sf = extract_file(retrieved, Str("aiida_tb.dat"))
+        tb_sf.label = "aiida_tb"
+        tb_sf.description = "Wannier90 generated tb.dat file"
+        self.out("aiida_tb", tb_sf)
 
     def run_wt(self):
         """wt.x を core.shell で実行。"""
@@ -205,7 +215,6 @@ class SiWtWorkChain(WorkChain):
             "wtin": "wt.in",
         }
         builder.arguments = List(list=[])  # 引数なし
-        builder.outputs = List(list=["*"])  # 全取得
 
         return ToContext(wt=self.submit(builder))
 

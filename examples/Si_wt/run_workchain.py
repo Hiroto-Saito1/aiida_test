@@ -19,9 +19,9 @@ wt_code = load_code("wt-wt@Si_wt")
 pseudo_si = UpfData(Path("Si.rel-pbe-n-kjpaw_psl.0.1.UPF").resolve()).store()
 
 kpoints_scf = KpointsData()
-kpoints_scf.set_kpoints_mesh([4, 4, 4])
+kpoints_scf.set_kpoints_mesh([2, 2, 2])
 kpoints_nscf = KpointsData()
-kpoints_nscf.set_kpoints_mesh([8, 8, 8])
+kpoints_nscf.set_kpoints_mesh([2, 2, 2])
 
 projections = generate_projections(
     dict(kind_name="Si", radial=1, ang_mtm_l_list=[0, 1], spin=None),
@@ -40,6 +40,6 @@ submit(
     kpoints_nscf=kpoints_nscf,
     num_wann=16,
     projections=projections,
-    num_machines=24,
-    queue_name="GroupA",
+    ppn=12,
+    queue_name="GroupE",
 )

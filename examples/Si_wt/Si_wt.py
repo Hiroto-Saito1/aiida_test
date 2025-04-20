@@ -11,9 +11,9 @@ from aiida.orm import (
     SinglefileData,
     Str,
     StructureData,
-    UpfData,
     List,
 )
+from aiida_pseudo.data.pseudo import UpfData
 from aiida.plugins import CalculationFactory
 
 
@@ -77,16 +77,8 @@ class SiWtWorkChain(WorkChain):
             "import_sys_environment": bool(self.inputs.import_sys_environment.value),
         }
 
-    def _extract_max_cutoffs(self):
-        wfc = rho = 0.0
-        for pseudo in self.inputs.pseudos.values():
-            wfc = max(wfc, pseudo.base.attributes.get("cutoff_wfc", 20.0))
-            rho = max(rho, pseudo.base.attributes.get("cutoff_rho", 100.0))
-        return wfc, rho
-
-
     def run_pw_scf(self):
-        ecutwfc, ecutrho = self._extract_max_cutoffs()
+        ecutwfc, ecutrho = 38, 151
         params = Dict(
             {
                 "CONTROL": {"calculation": "scf"},
@@ -96,6 +88,7 @@ class SiWtWorkChain(WorkChain):
                     "lspinorb": True,
                     "noncolin": True,
                 },
+                "ELECTRONS": {"conv_thr": 5e-8, "electron_maxstep": 200},
             }
         )
         builder = CalculationFactory("quantumespresso.pw").get_builder()
@@ -163,6 +156,8 @@ class SiWtWorkChain(WorkChain):
                     "fermi_energy", 0.0
                 )
                 + 1.0,
+                "num_iter": 0,
+                "dis_num_iter": 0,
             }
         )
         builder = CalculationFactory("wannier90.wannier90").get_builder()

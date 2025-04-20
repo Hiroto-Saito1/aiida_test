@@ -2,7 +2,8 @@
 from pathlib import Path
 from aiida import load_profile
 from aiida.engine import submit
-from aiida.orm import StructureData, KpointsData, load_code, UpfData
+from aiida.orm import StructureData, KpointsData, load_code
+from aiida_pseudo.data.pseudo import UpfData
 import ase.io
 from aiida_wannier90.orbitals import generate_projections
 from Si_wt import SiWtWorkChain

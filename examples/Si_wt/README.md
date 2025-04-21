@@ -52,4 +52,5 @@ verdi daemon restart
 計算結果の確認
 ```
 verdi process show <pk>
+verdi node graph generate <pk>
 ```

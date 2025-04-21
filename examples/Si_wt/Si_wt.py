@@ -18,23 +18,22 @@ from aiida.plugins import CalculationFactory
 
 
 class SiWtWorkChain(WorkChain):
-    """Si → Wannier90 → WannierTools で AHC を計算するワークチェイン。"""
+    """
+    Si → Wannier90 → WannierTools で AHC を計算するワークチェイン。
+    """
 
     @classmethod
     def define(cls, spec):
         super().define(spec)
 
-        # codes
         spec.input("pw_code", valid_type=orm.Code)
         spec.input("pw2wannier90_code", valid_type=orm.Code)
         spec.input("wannier_code", valid_type=orm.Code)
         spec.input("wt_code", valid_type=orm.Code)
 
-        # structure / pseudos
         spec.input("structure", valid_type=StructureData)
         spec.input_namespace("pseudos", valid_type=UpfData, dynamic=True, required=True)
 
-        # runtime
         spec.input("num_machines", valid_type=Int, default=lambda: Int(1))
         spec.input("ppn", valid_type=Int, default=lambda: Int(1))
         spec.input(
@@ -45,7 +44,6 @@ class SiWtWorkChain(WorkChain):
             "import_sys_environment", valid_type=Bool, default=lambda: Bool(False)
         )
 
-        # wannier settings
         spec.input("num_wann", valid_type=Int)
         spec.input("kpoints_scf", valid_type=KpointsData)
         spec.input("kpoints_nscf", valid_type=KpointsData)
@@ -59,14 +57,20 @@ class SiWtWorkChain(WorkChain):
             cls.run_w90,
             cls.collect_tb_files,
             cls.run_wt,
+            cls.register_wt_retrieved,
         )
 
         spec.output("aiida_hr", valid_type=SinglefileData)
         spec.output("aiida_tb", valid_type=SinglefileData)
         spec.output("wt_retrieved", valid_type=FolderData)
-        spec.output("wt_output", valid_type=Dict)
 
     def _metadata_options(self):
+        """
+        ワークチェインの実行メタデータを設定する。
+
+        Returns:
+            dict: metadata options.
+        """
         return {
             "resources": {
                 "num_machines": int(self.inputs.num_machines),
@@ -78,6 +82,12 @@ class SiWtWorkChain(WorkChain):
         }
 
     def run_pw_scf(self):
+        """
+        Quantum ESPRESSO pw の SCF 計算を実行する。
+
+        Returns:
+            ToContext: ctx.pw_scf に計算結果を格納する。
+        """
         ecutwfc, ecutrho = 38, 151
         params = Dict(
             {
@@ -101,6 +111,12 @@ class SiWtWorkChain(WorkChain):
         return ToContext(pw_scf=self.submit(builder))
 
     def run_pw_nscf(self):
+        """
+        Quantum ESPRESSO pw の NSCF 計算を実行する。
+
+        Returns:
+            ToContext: ctx.pw_nscf に計算結果を格納する。
+        """
         params = self.ctx.pw_scf.inputs.parameters.get_dict()
         params["CONTROL"]["calculation"] = "nscf"
         params.setdefault("SYSTEM", {})["nosym"] = True
@@ -121,6 +137,12 @@ class SiWtWorkChain(WorkChain):
         return ToContext(pw_nscf=self.submit(builder))
 
     def run_w90_pp(self):
+        """
+        Wannier90 の前処理 (pp) を実行する。
+
+        Returns:
+            ToContext: ctx.w90_pp に計算結果を格納する。
+        """
         mesh, _ = self.inputs.kpoints_nscf.get_kpoints_mesh()
         nw = int(self.inputs.num_wann.value)
         params = Dict(
@@ -137,6 +159,12 @@ class SiWtWorkChain(WorkChain):
         return ToContext(w90_pp=self.submit(builder))
 
     def run_pw2wan(self):
+        """
+        pw2wannier90 を実行し、必要なファイルを取得する。
+
+        Returns:
+            ToContext: ctx.pw2wan に計算結果を格納する。
+        """
         builder = CalculationFactory("quantumespresso.pw2wannier90").get_builder()
         builder.code = self.inputs.pw2wannier90_code
         builder.parameters = Dict({"inputpp": {"write_amn": True, "write_mmn": True}})
@@ -147,6 +175,12 @@ class SiWtWorkChain(WorkChain):
         return ToContext(pw2wan=self.submit(builder))
 
     def run_w90(self):
+        """
+        Wannier90 本計算を実行し hr と tb ファイルを生成する。
+
+        Returns:
+            ToContext: ctx.w90 に計算結果を格納する。
+        """
         params = self.ctx.w90_pp.inputs.parameters.get_dict()
         params.update(
             {
@@ -171,69 +205,80 @@ class SiWtWorkChain(WorkChain):
         return ToContext(w90=self.submit(builder))
 
     def collect_tb_files(self):
+        """
+        hr.dat と tb.dat を取り出して出力ポートに登録する。
+        """
         retrieved = self.ctx.w90.outputs.retrieved
-        # hr.dat
         hr_sf = extract_file(retrieved, Str("aiida_hr.dat"))
         hr_sf.label = "aiida_hr"
         hr_sf.description = "Wannier90 generated hr.dat file"
         self.out("aiida_hr", hr_sf)
-        # tb.dat
         tb_sf = extract_file(retrieved, Str("aiida_tb.dat"))
         tb_sf.label = "aiida_tb"
         tb_sf.description = "Wannier90 generated tb.dat file"
         self.out("aiida_tb", tb_sf)
 
     def run_wt(self):
-        """wt.x を core.shell で実行。"""
-        # SCF の Fermi (Ry → eV)
+        """
+        wt.x を実行して AHC を計算する。
+
+        Returns:
+            ToContext: ctx.wt に ShellJob を格納する。
+        """
         fermi_ry = self.ctx.pw_scf.outputs.output_parameters.get_dict()["fermi_energy"]
         fermi_ev = float(fermi_ry) * 13.605698066
-
-        # 生成物
         hr_node = self.outputs["aiida_hr"]
         tb_node = self.outputs["aiida_tb"]
         wt_in = make_wt_input(hr_node, tb_node, fermi_ev)
-
-        # shell CalcJob ビルダー
         builder = CalculationFactory("core.shell").get_builder()
         builder.code = self.inputs.wt_code
-
-        # リソース設定
         for key, val in self._metadata_options().items():
             setattr(builder.metadata.options, key, val)
-
-        # ファイル転送設定（トップレベルポート）
         builder.nodes = {"hr": hr_node, "tb": tb_node, "wtin": wt_in}
         builder.filenames = {
             "hr": "aiida_hr.dat",
             "tb": "aiida_tb.dat",
             "wtin": "wt.in",
         }
-        builder.arguments = List(list=[])  # 引数なし
-
+        builder.arguments = List(list=[])
+        builder.metadata.options.additional_retrieve_list = ["sigma_ahc_eta*meV.txt"]
         return ToContext(wt=self.submit(builder))
 
-    def on_terminated(self):
-        super().on_terminated()
-        if "wt" in self.ctx and self.ctx.wt.is_finished_ok:
-            self.out("wt_retrieved", self.ctx.wt.outputs.retrieved)
-            names = self.ctx.wt.outputs.retrieved.list_object_names()
-            if "AHC.dat" in names:
-                ahc = self.ctx.wt.outputs.retrieved.get_object_content("AHC.dat")
-                self.out("wt_output", Dict({"ahc_raw": ahc}))
-
-
-# ---------------- calcfunctions ----------------
+    def register_wt_retrieved(self):
+        """
+        ShellJob の retrieved FolderData を出力ポートに登録する。
+        """
+        retrieved = self.ctx.wt.outputs.retrieved
+        self.out("wt_retrieved", retrieved)
 
 
 @calcfunction
 def extract_file(retrieved: FolderData, filename: Str) -> SinglefileData:
+    """
+    Retrieved から指定ファイルを抽出して SinglefileData に変換する。
+
+    Args:
+        retrieved (FolderData): source folder.
+        filename (Str): name of file to extract.
+
+    Returns:
+        SinglefileData: extracted file data.
+    """
     data = retrieved.get_object_content(filename.value, mode="rb")
     return SinglefileData(file=io.BytesIO(data), filename=filename.value)
 
 
 @calcfunction
 def get_explicit_kpoints(kpoints: KpointsData) -> KpointsData:
+    """
+    KpointsData から明示的な k 点リストを生成する。
+
+    Args:
+        kpoints (KpointsData): source kpoint mesh or list.
+
+    Returns:
+        KpointsData: explicit kpoint list.
+    """
     kd = KpointsData()
     kd.set_kpoints(kpoints.get_kpoints_mesh(print_list=True))
     return kd
@@ -241,6 +286,17 @@ def get_explicit_kpoints(kpoints: KpointsData) -> KpointsData:
 
 @calcfunction
 def make_wt_input(hr: SinglefileData, tb: SinglefileData, ef) -> SinglefileData:
+    """
+    WannierTools の入力ファイルをテンプレートから作成する。
+
+    Args:
+        hr (SinglefileData): hr.dat file.
+        tb (SinglefileData): tb.dat file.
+        ef (float): Fermi energy.
+
+    Returns:
+        SinglefileData: generated wt.in file.
+    """
     ef_v = float(ef)
     template = f"""&TB_FILE
     Hrfile = '{hr.filename}'

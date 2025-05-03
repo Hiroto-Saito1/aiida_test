@@ -1,7 +1,6 @@
 import io
-import os
 from aiida import orm
-from aiida.engine import WorkChain, ToContext, calcfunction, ProcessHandlerReport
+from aiida.engine import WorkChain, ToContext, calcfunction
 from aiida.orm import (
     Bool,
     Dict,
@@ -208,12 +207,7 @@ class EuCuSbWorkChain(WorkChain):
         params["CONTROL"]["calculation"] = "nscf"
         params.setdefault("SYSTEM", {})["nosym"] = True
         params["SYSTEM"]["nbnd"] = 320
-        try:
-            _mesh, _ = self.inputs.kpoints_nscf.get_kpoints_mesh()
-            kpts = get_explicit_kpoints(self.inputs.kpoints_nscf)
-        except AttributeError:
-            kpts = self.inputs.kpoints_nscf
-
+        kpts = self.inputs.kpoints_nscf
         builder = CalculationFactory("quantumespresso.pw").get_builder()
         builder.code = self.inputs.pw_code
         builder.structure = self.ctx.hubstr
@@ -244,7 +238,7 @@ class EuCuSbWorkChain(WorkChain):
         builder.code = self.inputs.wannier_code
         builder.structure = self.inputs.structure
         builder.parameters = params
-        builder.kpoints = self.inputs.kpoints_nscf
+        builder.kpoints = get_explicit_kpoints(self.inputs.kpoints_nscf)
         builder.projections = self.inputs.projections
         builder.settings = Dict({"postproc_setup": True})
         builder.metadata.options = self._metadata_options()
@@ -262,21 +256,52 @@ class EuCuSbWorkChain(WorkChain):
         builder.parent_folder = self.ctx.pw_nscf.outputs.remote_folder
         builder.nnkp_file = self.ctx.w90_pp.outputs.nnkp_file
         builder.settings = Dict(
-            {"ADDITIONAL_RETRIEVE_LIST": ["*.iamn", "*.immn", "*.ieig", "*.isym"]}
+            {"ADDITIONAL_RETRIEVE_LIST": ["*.iamn", "*.immn", "*.ieig", "*.isym", "*nnkp"]}
         )
         builder.metadata.options = self._metadata_options()
         return ToContext(pw2wan=self.submit(builder))
 
     def run_symwan(self):
         """
-        symWannier (write_full_data.py) を実行し、iamn, immn, ieig, isym から amn, mmn, eig を生成します。
+        symWannier の write_full_data.py を実行し、
+        pw2wannier90 で生成された *.iamn, *.immn, *.ieig, *.isym, *nnkp を
+        ローカルへ回収し、再ステージングして Python スクリプトに渡します。
         """
-        builder = CalculationFactory("core.shell").get_builder()
+        retrieved = self.ctx.pw2wan.outputs.retrieved
+        iamn = extract_file(retrieved, Str("aiida.iamn"))
+        immn = extract_file(retrieved, Str("aiida.immn"))
+        ieig = extract_file(retrieved, Str("aiida.ieig"))
+        isym = extract_file(retrieved, Str("aiida.isym"))
+        nnkp = extract_file(retrieved, Str("aiida.nnkp"))
+
+        builder = self.inputs.symwannier_code.get_builder()
         builder.code = self.inputs.symwannier_code
+
+        builder.nodes = {
+            "iamn": iamn,
+            "immn": immn,
+            "ieig": ieig,
+            "isym": isym,
+            "nnkp": nnkp,
+        }
+        builder.filenames = {
+            "iamn": "aiida.iamn",
+            "immn": "aiida.immn",
+            "ieig": "aiida.ieig",
+            "isym": "aiida.isym",
+            "nnkp": "aiida.nnkp",
+        }
+
         builder.metadata.options = self._metadata_options()
-        builder.remote_folder = self.ctx.pw2wan.outputs.remote_folder
         builder.arguments = ["aiida"]
-        builder.metadata.options.additional_retrieve_list = ["*anm", "*mmn", "*eig"]
+        builder.metadata.options.output_filename = "stdout"
+        builder.metadata.options.append_text = "> stdout 2> stderr"
+        builder.metadata.options.additional_retrieve_list = [
+            "aiida.amn",
+            "aiida.mmn",
+            "aiida.eig",
+            "aiida.nnkp",
+        ]
         return ToContext(symwan=self.submit(builder))
 
     def run_w90(self):
@@ -333,8 +358,7 @@ class EuCuSbWorkChain(WorkChain):
         wt_in = make_wt_input(hr_node, tb_node, fermi_ev)
         builder = CalculationFactory("core.shell").get_builder()
         builder.code = self.inputs.wt_code
-        for key, val in self._metadata_options().items():
-            setattr(builder.metadata.options, key, val)
+        builder.metadata.options = self._metadata_options()
         builder.nodes = {"hr": hr_node, "tb": tb_node, "wtin": wt_in}
         builder.filenames = {
             "hr": "aiida_hr.dat",
@@ -342,6 +366,7 @@ class EuCuSbWorkChain(WorkChain):
             "wtin": "wt.in",
         }
         builder.arguments = List(list=[])
+        builder.metadata.options.withmpi = True
         builder.metadata.options.additional_retrieve_list = ["sigma_ahc_eta*meV.txt"]
         return ToContext(wt=self.submit(builder))
 

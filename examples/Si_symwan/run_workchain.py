@@ -30,7 +30,7 @@ pseudo_si = UpfData(Path("Si.rel-pbe-n-kjpaw_psl.0.1.UPF").resolve()).store()
 kpoints_scf = KpointsData()
 kpoints_scf.set_kpoints_mesh([1, 1, 1])
 kpoints_nscf = KpointsData()
-kpoints_nscf.set_kpoints_mesh([1, 1, 1])
+kpoints_nscf.set_kpoints_mesh([3, 3, 3])
 
 # Wannier 用の投影関数を生成
 projections = generate_projections(

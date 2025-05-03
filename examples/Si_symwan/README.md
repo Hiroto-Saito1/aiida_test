@@ -38,7 +38,7 @@ verdi code list
 擬ポテンシャルもディレクトリ内の Si.rel-pbe-n-kjpaw_psl.0.1.UPF を使うように指定した。
 wt.in は自分で用意した。
 ```
-export PYTHONPATH="/home2/hirotosaito/github_projects/aiida_test/xamples/Si_symwan:$PYTHONPATH"
+export PYTHONPATH="/home2/hirotosaito/github_projects/aiida_test/examples/Si_symwan:$PYTHONPATH"
 verdi daemon restart
 python run_workchain.py
 verdi process list -a
@@ -54,4 +54,10 @@ verdi daemon restart
 ```
 verdi process show <pk>
 verdi node graph generate <pk>
+```
+
+
+全ての手順のインプットとアウトプットを確認するコマンド
+```
+verdi process dump <workchainのpk> -p dump-SiWt
 ```

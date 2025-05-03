@@ -1,0 +1,8 @@
+---
+label: "sw-writefulldata"
+description: "symWannier write_full_data.py executable"
+default_calc_job_plugin: 'core.shell'
+computer: "Si_symwan"
+filepath_executable: "/home/hirotosaito/github_projects/ishiwata_lab/src/symwannier_qe-7.3/symwannier/write_full_data.py"
+prepend_text: " "
+append_text: " "

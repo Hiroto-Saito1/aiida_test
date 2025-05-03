@@ -176,11 +176,20 @@ class SiWtWorkChain(WorkChain):
         builder.parent_folder = self.ctx.pw_nscf.outputs.remote_folder
         builder.nnkp_file = self.ctx.w90_pp.outputs.nnkp_file
         builder.settings = Dict(
-            {"ADDITIONAL_RETRIEVE_LIST": ["*.iamn", "*.immn", "*.ieig", "*.isym", "*nnkp"]}
+            {
+                "ADDITIONAL_RETRIEVE_LIST": [
+                    "*.iamn",
+                    "*.immn",
+                    "*.ieig",
+                    "*.isym",
+                    "*nnkp",
+                ]
+            }
         )
         builder.metadata.options = self._metadata_options()
         return ToContext(pw2wan=self.submit(builder))
 
+    
     def run_symwan(self):
         """
         symWannier (write_full_data.py) を実行し、iamn, immn, ieig, isym, nnkp から amn, mmn, eig を生成します。
@@ -188,13 +197,20 @@ class SiWtWorkChain(WorkChain):
         builder = CalculationFactory("core.shell").get_builder()
         builder.code = self.inputs.symwannier_code
         builder.remote_folder = self.ctx.pw2wan.outputs.remote_folder
-        builder.metadata.options = self._metadata_options()
+        for key, val in self._metadata_options().items():
+            setattr(builder.metadata.options, key, val)
         builder.arguments = ["aiida"]
-        builder.metadata.options.stash = {}
-        builder.metadata.options.append_text = "&> aiida.out"
-        builder.metadata.options.additional_retrieve_list = ["aiida.out", "*anm", "*mmn", "*eig"]
+        builder.metadata.options.output_filename = "stdout"
+        builder.metadata.options.append_text = "> stdout 2> stderr"
+        builder.metadata.options.additional_retrieve_list = [
+            "aiida.amn",
+            "aiida.mmn",
+            "aiida.eig",
+            "aiida.nnkp",
+        ]
         return ToContext(symwan=self.submit(builder))
-
+    
+    '''
     def run_w90(self):
         """
         Wannier90 本計算を実行し hr と tb ファイルを生成する。
@@ -220,9 +236,67 @@ class SiWtWorkChain(WorkChain):
         builder.structure = self.inputs.structure
         builder.parameters = Dict(params)
         builder.kpoints = self.inputs.kpoints_nscf
-        builder.remote_input_folder = self.ctx.symwan.outputs.remote_folder
+        builder.parent_folder = self.ctx.symwan.outputs.remote_folder
         builder.projections = self.inputs.projections
         builder.metadata.options = self._metadata_options()
+        return ToContext(w90=self.submit(builder))'
+    '''
+
+    def run_w90(self):
+        """
+        Wannier90 本計算を実行し、hr.dat と tb.dat ファイルを生成する。
+
+        Returns:
+            ToContext: ctx.w90 に計算結果を格納する。
+        """
+        # 1) 前段の w90_pp から基本パラメータを取得して更新
+        params = self.ctx.w90_pp.inputs.parameters.get_dict()
+        params.update({
+            "write_hr": True,
+            "write_tb": True,
+            # fermi_energy は Ry なので eV に換算済みの値を渡す
+            "dis_froz_max": (
+                self.ctx.pw_scf.outputs.output_parameters
+                    .get_dict().get("fermi_energy", 0.0)
+                + 1.0
+            ),
+            "num_iter": 0,
+            "dis_num_iter": 0,
+        })
+
+        # 2) symwan で生成・回収した .amn/.mmn/.eig を抽出
+        retrieved = self.ctx.symwan.outputs.retrieved
+        amn = extract_file(retrieved, Str("aiida.amn"))
+        mmn = extract_file(retrieved, Str("aiida.mmn"))
+        eig = extract_file(retrieved, Str("aiida.eig"))
+
+        # 3) Wannier90 プラグイン (CalcJob) のビルダーを準備
+        builder = CalculationFactory("wannier90.wannier90").get_builder()
+        builder.code        = self.inputs.wannier_code
+        builder.structure   = self.inputs.structure
+        builder.parameters  = Dict(params)
+        builder.kpoints     = self.inputs.kpoints_nscf
+        builder.projections = self.inputs.projections
+
+        # 4) Local→Remote ステージング: symwan 出力ファイルをリモートに配置
+        builder.nodes = {
+            "amn": amn,
+            "mmn": mmn,
+            "eig": eig,
+        }
+        builder.filenames = {
+            "amn": "aiida.amn",
+            "mmn": "aiida.mmn",
+            "eig": "aiida.eig",
+        }
+
+        # 5) リソース設定と出力ファイル取得指定
+        builder.metadata.options = self._metadata_options()
+        builder.metadata.options.additional_retrieve_list = [
+            "hr.dat", "tb.dat"
+        ]
+
+        # 6) ジョブをサブミットしてコンテキストに登録
         return ToContext(w90=self.submit(builder))
 
     def collect_tb_files(self):
@@ -253,7 +327,8 @@ class SiWtWorkChain(WorkChain):
         wt_in = make_wt_input(hr_node, tb_node, fermi_ev)
         builder = CalculationFactory("core.shell").get_builder()
         builder.code = self.inputs.wt_code
-        builder.metadata.options = self._metadata_options()
+        for key, val in self._metadata_options().items():
+            setattr(builder.metadata.options, key, val)
         builder.nodes = {"hr": hr_node, "tb": tb_node, "wtin": wt_in}
         builder.filenames = {
             "hr": "aiida_hr.dat",

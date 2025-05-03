@@ -1,0 +1,8 @@
+&INPUTPP
+  irr_bz = .true.
+  outdir = './out/'
+  prefix = 'aiida'
+  seedname = 'aiida'
+  write_amn = .true.
+  write_mmn = .true.
+/

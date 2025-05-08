@@ -5,6 +5,19 @@
 conda 24.9.2, python 3.12.8 を使用。
 
 ```
+conda env remove -n aiida
+conda create -n aiida python=3.12
+conda activate aiida
+
+pip install aiida-core
+conda install -c conda-forge aiida-core.services
+rabbitmq-server -detached
+verdi profile setup core.sqlite_dos
+verdi profile configure-rabbitmq
+```
+あるいは
+```
+conda env remove -n aiida
 conda env create -f environment.yml
 conda activate aiida
 ```

@@ -43,7 +43,6 @@ kpoints.set_kpoints_mesh([4, 4, 4])
 builder.kpoints = kpoints
 
 # submit
-builder.metadata.options.withmpi = False
 builder.metadata.options.resources = {
     'num_machines': 1,
     'num_mpiprocs_per_machine': 1,
@@ -52,7 +51,6 @@ builder.metadata.options.resources = {
 builder.metadata.options.custom_scheduler_commands = "\n".join([
     "#PBS -q lx",
     "#PBS -l elapstim_req=00:10:00",
-    "# この行が PBS ディレクティブブロックを切ります",
 ])
 builder.metadata.options.import_sys_environment = False  # -V オプションを削除する
 

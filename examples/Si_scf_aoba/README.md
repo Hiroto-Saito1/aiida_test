@@ -2,10 +2,13 @@
 # はじめに
 この例では Si の scf 計算を行います。
 
+## 注意
+AOBA Bで行うために、qsubのaliasを.bashrcで変更した。
+
 ## computer の登録
 computer.yml に出力先ディレクトリなどの計算I/Oの詳細をまとめておく。
 ```
-verdi computer setup --config computer.yml --non-interactive
+verdi computer setup --config computer.yml
 verdi computer configure core.local Si_scf
 verdi computer list
 ```

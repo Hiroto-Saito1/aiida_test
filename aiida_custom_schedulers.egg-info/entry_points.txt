@@ -1,0 +1,2 @@
+[aiida.schedulers]
+pbspro_no_select = aiida_custom_schedulers.custom_pbspro:NoSelectPbsproScheduler

@@ -2,10 +2,9 @@
 label: "Si_scf"
 hostname: "localhost"
 transport: "core.local"
-scheduler: "core.pbspro"
+scheduler: "pbspro_no_select"
 work_dir: "/uhome/a01774/github_projects/aiida_test/examples/Si_scf_aoba"
 prepend_text: "source /uhome/a01774/github_projects/aiida_test/examples/Si_scf_aoba/setting.sh"
 
-mpiprocs_per_machine: null
-mpirun_command: ""
-default_memory_per_machine: null
+mpirun_command: "mpirun -np {tot_num_mpiprocs}"
+mpiprocs_per_machine: "1"

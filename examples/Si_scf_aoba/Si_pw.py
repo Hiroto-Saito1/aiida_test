@@ -43,6 +43,7 @@ kpoints.set_kpoints_mesh([4, 4, 4])
 builder.kpoints = kpoints
 
 # submit
+builder.metadata.options.withmpi = False
 builder.metadata.options.resources = {
     'num_machines': 1,
     'num_mpiprocs_per_machine': 1,

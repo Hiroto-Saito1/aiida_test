@@ -1,4 +1,0 @@
-*** The MPI_Comm_c2f() function was called before MPI_INIT was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[par019:24752] Local abort before MPI_INIT completed completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!

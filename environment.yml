@@ -101,7 +101,7 @@ dependencies:
   - zstd=1.5.6=hc292b87_0
   - pip:
       - aiida-core==2.6.3
-      - aiida-nqsv-plugin==0.1.0
+      - aiida-nqsv-plugin==1.0.0
       - aiida-pseudo==1.7.0
       - aiida-quantumespresso==4.8.0
       - aiida-wannier90==2.2.0

@@ -4,6 +4,7 @@
 
 ## 注意
 aiida-nqsv-pluginライブラリを自作し、`pip install -e .`でインストールした。
+(https://github.com/Hiroto-Saito1/aiida_nqsv_plugin)
 
 ## computer の登録
 computer.yml に出力先ディレクトリなどの計算I/Oの詳細をまとめておく。

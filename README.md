@@ -23,7 +23,7 @@ conda activate aiida
 ```
 
 ## aiida 環境設定
-~/.aiida ディレクトリを作り、ここにグローバル設定を保存する。
+~/.aiida ディレクトリを作り、ここにグローバル設定やSQLデータベースを保存する。
 
 プロジェクトごとにプロファイルを作る。
 ここでは aiida_test プロファイルを作る。メールアドレスは入力必須。
@@ -42,11 +42,26 @@ rabbitmq-server -detached
 ```
 をもう一度やる。
 
+### 注意
+簡単のためにSQLiteを用いるが、複数の計算を同時に行う場合にはPostgreSQLを用いる必要がある。
+PostgreSQLを用いる方法についてはまた別の機会に。
+
 ## デーモンの起動
 ```
 verdi daemon start
 verdi status
 ```
+
+### 注意
+以下のようなWarningが出る。
+```
+Warning: RabbitMQ v3.12.13 is not supported and will cause unexpected problems!
+Warning: It can cause long-running workflows to crash and jobs to be submitted multiple times.
+Warning: See https://github.com/aiidateam/aiida-core/wiki/RabbitMQ-version-to-use for details.
+```
+これはデフォルトではデーモン(RabitMQ)が30分以上のジョブを監視してくれないことを意味する。
+監視時間を無限にする方法はまた別の機会に。
+
 
 ## 擬ポテンシャルの設定
 ```

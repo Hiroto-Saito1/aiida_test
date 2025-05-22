@@ -3,7 +3,7 @@
 この例では Si の scf 計算を行います。
 
 ## 注意
-AOBA Bで行うために、qsubのaliasを.bashrcで変更した。
+aiida-nqsv-pluginライブラリを自作し、`pip install -e .`でインストールした。
 
 ## computer の登録
 computer.yml に出力先ディレクトリなどの計算I/Oの詳細をまとめておく。

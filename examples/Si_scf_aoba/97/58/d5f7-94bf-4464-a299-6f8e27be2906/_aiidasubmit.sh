@@ -1,10 +1,9 @@
 #!/bin/bash
 #PBS -r n
 #PBS -m n
-#PBS -N aiida-205
+#PBS -N aiida-265
 #PBS -o _scheduler-stdout.txt
 #PBS -e _scheduler-stderr.txt
-#PBS -l select=1:mpiprocs=2
 #PBS -q lx
 #PBS -l elapstim_req=00:10:00
 cd "$PBS_O_WORKDIR"
